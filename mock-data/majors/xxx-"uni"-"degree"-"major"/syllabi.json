@@ -1,0 +1,10 @@
+[
+  {
+    "id": 101000,
+    "majorId": 101,
+    "name": "سرفصل 1400 و به بعد",
+    "minEntryYear": 1400,
+    "maxEntryYear": 1500,
+    "hasFlowChart": true
+  }
+]

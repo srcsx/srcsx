@@ -1,0 +1,189 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum DegreeLevel {
+  bachelor
+  master
+  phd
+}
+
+model University {
+  id     Int     @id @default(autoincrement())
+  slug   String  @unique
+  name   String
+  majors Major[]
+}
+
+model Major {
+  id           Int @id @default(autoincrement())
+  universityId Int
+
+  type DegreeLevel @default(bachelor)
+  slug String      @unique
+  name String
+
+  university University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  syllabi    Syllabus[]
+}
+
+model Syllabus {
+  id      Int @id @default(autoincrement())
+  majorId Int
+
+  name         String
+  minEntryYear Int?
+  maxEntryYear Int?
+  hasFlowChart Boolean @default(false)
+
+  major Major @relation(fields: [majorId], references: [id], onDelete: Cascade)
+
+  courseGroups          CourseGroup[]
+  files                 File[]
+  termCoursesSyllabuses TermCoursesSyllabus[]
+  courseRequisites      CourseRequisite[]
+  courseUnitRequisites  CourseUnitRequisite[]
+
+  @@map("syllabi")
+}
+
+enum CourseGroupType {
+  required
+  optional
+  elective
+}
+
+model CourseGroup {
+  id         Int  @id @default(autoincrement())
+  syllabusId Int? // Null SyllabusId => GeneralGroup
+
+  type               CourseGroupType @default(required)
+  name               String
+  minRequiredUnits   Int             @db.SmallInt
+  maxRequiredUnits   Int             @db.SmallInt
+  minRequiredCourses Int?            @db.SmallInt
+  maxRequiredCourses Int?            @db.SmallInt
+  minEntryYear       Int?            @db.SmallInt
+  maxEntryYear       Int?            @db.SmallInt
+  description        String
+  oneCoursePerTerm   Boolean         @default(false)
+
+  syllabus Syllabus? @relation(fields: [syllabusId], references: [id])
+  courses  Course[]
+}
+
+model CourseReference {
+  id       Int    @id @default(autoincrement())
+  name     String
+  unit     Int    @db.SmallInt
+  theoUnit Int    @db.SmallInt
+  pracUnit Int    @db.SmallInt
+
+  resources CourseResource[]
+  courses   Course[]
+}
+
+model Course {
+  id Int @id @default(autoincrement())
+
+  name           String
+  unit           Int     @db.SmallInt
+  theoUnit       Int     @db.SmallInt
+  pracUnit       Int     @db.SmallInt
+  required       Boolean @default(false)
+  amozeshyarCode String?
+
+  courseGroups          CourseGroup[]
+  termCoursesSyllabus   TermCoursesSyllabus? @relation(fields: [termCoursesSyllabusId], references: [id])
+  termCoursesSyllabusId Int?
+
+  preCourseRequisites  CourseRequisite[]     @relation("PrerequisiteToCourse")
+  postCourseRequisites CourseRequisite[]     @relation("PostrequisiteToCourse")
+  unitRequisites       CourseUnitRequisite[]
+
+  courseReference   CourseReference? @relation(fields: [courseReferenceId], references: [id])
+  courseReferenceId Int?
+}
+
+model CourseResource {
+  id Int @id @default(autoincrement())
+
+  englishName String?
+  persianName String?
+  url         String?
+
+  courseReference   CourseReference? @relation(fields: [courseReferenceId], references: [id])
+  courseReferenceId Int?
+}
+
+model CourseRequisite {
+  id                Int     @id @default(autoincrement())
+  syllabusId        Int? // Null => General Course
+  courseId          Int
+  courseRequisiteId Int
+  corequisite       Boolean @default(false)
+
+  syllabus Syllabus? @relation(fields: [syllabusId], references: [id], onDelete: Cascade)
+
+  course          Course @relation("PrerequisiteToCourse", fields: [courseId], references: [id], onDelete: Cascade)
+  courseRequisite Course @relation("PostrequisiteToCourse", fields: [courseRequisiteId], references: [id], onDelete: Cascade)
+}
+
+model CourseUnitRequisite {
+  id         Int  @id @default(autoincrement())
+  syllabusId Int? // Null => General Course
+  courseId   Int
+  unit       Int? @db.SmallInt
+
+  syllabus Syllabus? @relation(fields: [syllabusId], references: [id], onDelete: Cascade)
+  course   Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model DocSection {
+  id Int @id @default(autoincrement())
+
+  docId Int
+
+  title   String
+  message String
+
+  doc Doc @relation(fields: [docId], references: [id], onDelete: Cascade)
+}
+
+model Doc {
+  id Int @id @default(autoincrement())
+
+  name String
+
+  sections DocSection[]
+}
+
+enum FileType {
+  syllabus
+  chart
+}
+
+model File {
+  id         Int  @id @default(autoincrement())
+  syllabusId Int?
+
+  type  FileType @default(syllabus)
+  title String
+  url   String
+
+  syllabus Syllabus? @relation(fields: [syllabusId], references: [id], onDelete: Cascade)
+}
+
+model TermCoursesSyllabus {
+  id         Int @id @default(autoincrement())
+  syllabusId Int
+  term       Int @db.SmallInt
+
+  courses  Course[]
+  syllabus Syllabus @relation(fields: [syllabusId], references: [id], onDelete: Cascade)
+}

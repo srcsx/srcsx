@@ -1,0 +1,9 @@
+[
+  {
+    "id": 101,
+    "universityId": 1,
+    "type": "bachelor",
+    "slug": "computer-science",
+    "name": "علوم کامپیوتر"
+  }
+]

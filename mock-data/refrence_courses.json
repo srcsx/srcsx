@@ -1,0 +1,646 @@
+[
+  {
+    "id": 100100,
+    "name": "فارسی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 100101,
+    "name": "تربیت بدنی",
+    "unit": 1,
+    "theoUnit": 0,
+    "pracUnit": 1
+  },
+  {
+    "id": 100102,
+    "name": "ورزش",
+    "unit": 1,
+    "theoUnit": 0,
+    "pracUnit": 1
+  },
+  {
+    "id": 100103,
+    "name": "زبان خارجی (۳ واحدی)",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 100104,
+    "name": "زبان انگلیسی پیش دانشگاهی | آزمون زبان",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100105,
+    "name": "زبان انگلیسی ترکیبی 1",
+    "unit": 1,
+    "theoUnit": 1,
+    "pracUnit": 0
+  },
+  {
+    "id": 100106,
+    "name": "زبان انگلیسی ترکیبی 2",
+    "unit": 1,
+    "theoUnit": 1,
+    "pracUnit": 0
+  },
+  {
+    "id": 100107,
+    "name": "زبان انگلیسی ترکیبی 3",
+    "unit": 1,
+    "theoUnit": 1,
+    "pracUnit": 0
+  },
+  {
+    "id": 100108,
+    "name": "اندیشه اسلامی 1",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100109,
+    "name": "اندیشه اسلامی 2",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100110,
+    "name": "انسان در اسلام",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100111,
+    "name": "حقوق اجتماعی و سیاسی در اسلام",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100112,
+    "name": "فلسفه اخلاق",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100113,
+    "name": "اخلاق اسلامی",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100114,
+    "name": "آیین زندگی",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100115,
+    "name": "عرفان عملی در اسلام",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100116,
+    "name": "انقلاب اسلامی ایران",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100117,
+    "name": "آشنایی با قانون اساسی جمهوری اسلامی ایران",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100118,
+    "name": "اندیشه سیاسی امام خمینی (ره)",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100119,
+    "name": "تفسیر موضوعی قرآن",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100120,
+    "name": "تفسیر موضوعی نهج البلاغه",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100121,
+    "name": "تاریخ تحلیلی صدر اسلام",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100122,
+    "name": "تاریخ امامت",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100123,
+    "name": "تاریخ فرهنگ و تمدن اسلام و ایران",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100124,
+    "name": "دانش خانواده و جمعیت",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 100125,
+    "name": "انس با قرآن",
+    "unit": 1,
+    "theoUnit": 1,
+    "pracUnit": 0
+  },
+  {
+    "id": 100126,
+    "name": "اندیشه ها و وصایای امام",
+    "unit": 1,
+    "theoUnit": 1,
+    "pracUnit": 0
+  },
+  {
+    "id": 100127,
+    "name": "دفاع مقدس",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 101100,
+    "name": "ریاضی عمومی (1)",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101101,
+    "name": "ریاضی عمومی (2)",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101102,
+    "name": "فیزیک عمومی (1)",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101103,
+    "name": "معادلات دیفرانسیل",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101104,
+    "name": "مبانی کامپیوتر و برنامه سازی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101105,
+    "name": "روش تحقیق و گزارش نویسی",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 101106,
+    "name": "کارگاه کامپیوتر",
+    "unit": 1,
+    "theoUnit": 0,
+    "pracUnit": 1
+  },
+  {
+    "id": 101107,
+    "name": "مبانی اقتصاد",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101108,
+    "name": "فیزیک عمومی (2)",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101109,
+    "name": "اصول حسابداری و هزینه یابی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101110,
+    "name": "اصول مدیریت",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101111,
+    "name": "مبانی علوم ریاضی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101112,
+    "name": "مبانی ماتریس ها و جبر خطی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101113,
+    "name": "مبانی ترکیبیات",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101114,
+    "name": "مبانی آنالیز عددی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101115,
+    "name": "مبانی احتمال",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101116,
+    "name": "مبانی نظریه محاسبه",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101117,
+    "name": "برنامه سازی پیشرفته",
+    "unit": 4,
+    "theoUnit": 3,
+    "pracUnit": 1
+  },
+  {
+    "id": 101118,
+    "name": "ساختمان داده و الگوریتم ها",
+    "unit": 4,
+    "theoUnit": 4,
+    "pracUnit": 0
+  },
+  {
+    "id": 101119,
+    "name": "اصول سیستم های عامل",
+    "unit": 4,
+    "theoUnit": 4,
+    "pracUnit": 0
+  },
+  {
+    "id": 101120,
+    "name": "جبر خطی عددی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101121,
+    "name": "اصول سیستم های کامپیوتری",
+    "unit": 4,
+    "theoUnit": 4,
+    "pracUnit": 0
+  },
+  {
+    "id": 101122,
+    "name": "مبانی منطق و نظریه مجموعه ها",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101123,
+    "name": "طراحی و تحلیل الگوریتم ها",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101124,
+    "name": "بهینه سازی خطی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101125,
+    "name": "نظریه محاسبه",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101126,
+    "name": "هوش مصنوعی",
+    "unit": 4,
+    "theoUnit": 3,
+    "pracUnit": 1
+  },
+  {
+    "id": 101127,
+    "name": "اصول طراحی نرم افزار",
+    "unit": 4,
+    "theoUnit": 3,
+    "pracUnit": 1
+  },
+  {
+    "id": 101128,
+    "name": "کامپایلر",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101129,
+    "name": "پایگاه داده ها",
+    "unit": 4,
+    "theoUnit": 3,
+    "pracUnit": 1
+  },
+  {
+    "id": 101130,
+    "name": "شبکه های کامپیوتری",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101131,
+    "name": "مباحثی در علوم کامپیوتر",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101132,
+    "name": "بهینه سازی غیر خطی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101133,
+    "name": "نظریه گراف و کاربرد ها",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101134,
+    "name": "آنالیز عددی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101135,
+    "name": "طراحی هندسی کامپیوتری",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101136,
+    "name": "شبیه سازی کامپیوتری",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101137,
+    "name": "مقدمه ای بر داده کاوی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101138,
+    "name": "پروژه",
+    "unit": 3,
+    "theoUnit": 0,
+    "pracUnit": 3
+  },
+  {
+    "id": 101139,
+    "name": "کارآموزی ۱",
+    "unit": 2,
+    "theoUnit": 0,
+    "pracUnit": 2
+  },
+  {
+    "id": 101140,
+    "name": "کارآموزی ۲",
+    "unit": 2,
+    "theoUnit": 0,
+    "pracUnit": 2
+  },
+  {
+    "id": 101141,
+    "name": "کاربرد کامپیوتر در سیستم های تجاری",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101142,
+    "name": "بهینه سازی ترکیبیاتی و آنالیز شبکه ها",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101143,
+    "name": "مبانی آنالیز ریاضی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101144,
+    "name": "مبانی جبر",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101145,
+    "name": "نظریه کد گذاری",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101146,
+    "name": "زبان های برنامه سازی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101147,
+    "name": "گرافیک کامپیوتری",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101148,
+    "name": "منطق",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101149,
+    "name": "سیستم های اطلاعاتی مدیریتی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101150,
+    "name": "ریاضیات مهندسی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101151,
+    "name": "احتمال ۱",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101152,
+    "name": "زیست شناسی سلولی و مولکولی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101153,
+    "name": "مباحثی در الگوریتم ها",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101154,
+    "name": "مبانی بیوانفورماتیک",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101155,
+    "name": "مبانی کارآفرینی",
+    "unit": 2,
+    "theoUnit": 2,
+    "pracUnit": 0
+  },
+  {
+    "id": 101157,
+    "name": "جبر خطی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101158,
+    "name": "ریاضی عمومی (3)",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101160,
+    "name": "مدار منطقی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101161,
+    "name": "نرم افزار ریاضی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101162,
+    "name": "بهینه سازی ترکیبیاتی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101163,
+    "name": "ریز پردازنده (1)",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101168,
+    "name": "زبان تخصصی",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  },
+  {
+    "id": 101169,
+    "name": "بهینه سازی پویا",
+    "unit": 3,
+    "theoUnit": 3,
+    "pracUnit": 0
+  }
+]

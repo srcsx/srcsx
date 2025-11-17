@@ -1,0 +1,8 @@
+[
+  {
+    "syllabusId": 101000,
+    "courseId": 101101,
+    "courseRequisiteId": 101100,
+    "corequisite": false
+  }
+]
