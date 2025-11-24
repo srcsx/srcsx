@@ -1,0 +1,92 @@
+import UvVector from "@/assets/vectors/UvVector";
+import NumbersVector from "@/assets/vectors/NumbersVector";
+import BookStarVector from "@/assets/vectors/‌BookStarVector";
+import { FlowchartVector } from "@/assets/vectors/FlowchartVector";
+import { DocumentVector } from "@/assets/vectors/DocumentVector";
+import { OpenBookVector } from "@/assets/vectors/OpenBookVector";
+import { RegistrationVector } from "@/assets/vectors/RegistrationVector";
+import { LibraryVector } from "@/assets/vectors/LibraryVector";
+
+interface ItemType {
+  title: string;
+  href: string;
+  icon: React.ReactNode;
+  inProgress?: boolean;
+  beta?: boolean;
+  newItem?: boolean;
+  soon?: boolean;
+  disabled?: boolean;
+  description?: string;
+}
+
+export const features: ItemType[] = [
+  {
+    title: "بررسی واحدهای درسی <br /> (کلی)",
+    href: "uv",
+    icon: <UvVector />,
+    description:
+      "از طریق این سیستم می‌تونی هم دسته‌بندی چارت درسی خودت رو مشاهده کنی و هم با انتخاب درس هایی که پاس کردی وضعیت واحد خودتون رو بررسی کنی.",
+  },
+  {
+    title: "بررسی واحدهای درسی <br /> (بر اساس ترم)",
+    href: "uv-term-based",
+    icon: <UvVector />,
+    description:
+      "دقیقا مثل سیستم قبلی اینجا هم برای بررسی واحد های درسیته با این تفاوت که بر اساس ترم های تحصیلیت وارد می‌کنی تا وضعیت پیش‌نیاز هات هم مشخص باشه",
+  },
+  {
+    title: "فلوچارت درسی",
+    href: "flowchart",
+    icon: <FlowchartVector />,
+    description:
+      "از اینجا میتونی به شکل فلوچارت یه نمای کلی از درس های تخصصیت داشته باشی.",
+  },
+  {
+    title: "دریافت سرفصل ها و چارت ها",
+    href: "files",
+    icon: <BookStarVector />,
+    description:
+      "اگه فایل سرفصل یا چارت درسیت رو میخوای میتونی از اینجا دانلود کنی.",
+  },
+  {
+    title: "داکیومنت <br /> (راهنما و آموزش ها)",
+    href: "docs",
+    icon: <DocumentVector />,
+    inProgress: true,
+    description:
+      "قوانین و مقررات دانشگاه و آموزش رو می‌تونی از اینجا مطالعه کنی.",
+  },
+  {
+    title: "دریافت کد درس ها",
+    href: "courses-codes",
+    icon: <NumbersVector />,
+    inProgress: true,
+    description:
+      "اگه نیاز داری برای انتخاب واحد کد درس های آموزشیار رو یه جا ذخیره کنی میتونی از اینجا بر داری.",
+  },
+  {
+    title: "منابع درسی",
+    href: "courses-resources",
+    icon: <OpenBookVector />,
+    inProgress: true,
+    description: "منابع معتبر درس های دانشگاه رو میتونی از اینجا مشاهده کنی.",
+  },
+  {
+    title: "انتخاب واحد آزمایشی",
+    href: "course-registration",
+    icon: <RegistrationVector />,
+    soon: true,
+    disabled: true,
+    description:
+      "از این سیستم میتونی برای انتخاب واحد آزمایشی (در موعد مقرر شده) استفاده کنی.",
+  },
+  {
+    title: "منابع آموزشی",
+    href: "sources",
+    icon: <LibraryVector />,
+    soon: true,
+    disabled: true,
+    description:
+      "منابع آموزشی (خارج از درس های دانشگاه) رو میتونی از اینجا بر داری.",
+  },
+];

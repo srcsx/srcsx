@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import ProgressBar from "@/components/layout/ProgressBar";
 import SRCSXSimpleNav from "@/components/layout/SRCSXSimpleNavigation";
+import { PageTourRenderer } from "@/components/layout/PageTourRenderer";
 
 export const metadata: Metadata = {
   title: "SRCSX - پلتفرم جامع",
@@ -35,6 +36,7 @@ export default function RootLayout({
           {children}
           <ProgressBar />
           <SRCSXSimpleNav />
+          <PageTourRenderer />
         </Suspense>
       </body>
     </html>

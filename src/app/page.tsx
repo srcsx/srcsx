@@ -1,87 +1,72 @@
 "use client";
 import SetupVector from "@/assets/vectors/SetupVector";
-import UvVector from "@/assets/vectors/UvVector";
 import ItemLink from "@/components/pages/home/ItemLink";
 import Loader from "@/components/pages/home/Loader";
 import { motion } from "framer-motion";
-import NumbersVector from "@/assets/vectors/NumbersVector";
-import { useEffect, useState } from "react";
 import HomeLogo from "@/components/pages/home/HomeLogo";
-import BookStarVector from "@/assets/vectors/‌BookStarVector";
-import { FlowchartVector } from "@/assets/vectors/FlowchartVector";
-import { DocumentVector } from "@/assets/vectors/DocumentVector";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { OpenBookVector } from "@/assets/vectors/OpenBookVector";
-import { RegistrationVector } from "@/assets/vectors/RegistrationVector";
-import { LibraryVector } from "@/assets/vectors/LibraryVector";
+import { QuestionVector } from "@/assets/vectors/QuestionVector";
+import { features } from "@/utils/features";
+import { DriveStep } from "driver.js";
+import { useTour } from "@/hooks/useTour";
 
-interface ItemType {
-  title: string;
-  href: string;
-  icon: React.ReactNode;
-  inProgress?: boolean;
-  beta?: boolean;
-  newItem?: boolean;
-  soon?: boolean;
-  disabled?: boolean;
-}
-
-const items: ItemType[] = [
+const tourSteps: DriveStep[] = [
   {
-    title: "بررسی واحدهای درسی <br /> (کلی)",
-    href: "/uv",
-    icon: <UvVector />,
+    popover: {
+      title: "خوش اومدی",
+      description:
+        "اگه اولین باره که اینجا رو باز می‌کنی بیا تا قدم به قدم تمام امکانات SRCSX رو با هم مرور کنیم.",
+      side: "left",
+      align: "start",
+    },
   },
   {
-    title: "بررسی واحدهای درسی <br /> (بر اساس ترم)",
-    href: "/uv-term-based",
-    icon: <UvVector />,
+    element: "#settings",
+    popover: {
+      title: "تنظیمات",
+      description:
+        "از طریق تنظیمات میتونی رشته و سال ورودت رو انتخاب کنی و همجنین یسری قابلیت های سایت رو تغییر بدی.",
+      side: "left",
+      align: "start",
+    },
   },
   {
-    title: "فلوچارت درسی",
-    href: "/flowchart",
-    icon: <FlowchartVector />,
+    element: "#about-srcsx",
+    popover: {
+      title: "درباره SRCSX",
+      description:
+        "میتونی از اینجا بیشتر درباره SRCSX بخونی، همچنین از طریق گیت‌هاب به پروژه دسترسی پیدا کنی.",
+      side: "left",
+      align: "start",
+    },
   },
+  ...(features.map((i) => {
+    return {
+      element: "#main-item-" + i.href,
+      popover: {
+        title: i.title,
+        description: i.description ?? "متن تست.",
+        side: "left",
+        align: "start",
+      },
+    };
+  }) as DriveStep[]),
   {
-    title: "دریافت سرفصل ها و چارت ها",
-    href: "/files",
-    icon: <BookStarVector />,
-  },
-  {
-    title: "داکیومنت <br /> (راهنما و آموزش ها)",
-    href: "/docs",
-    icon: <DocumentVector />,
-    inProgress: true,
-  },
-  {
-    title: "دریافت کد درس ها",
-    href: "/courses-codes",
-    icon: <NumbersVector />,
-    inProgress: true,
-  },
-  {
-    title: "منابع درسی",
-    href: "/courses-resources",
-    icon: <OpenBookVector />,
-    inProgress: true,
-  },
-  {
-    title: "انتخاب واحد آزمایشی",
-    href: "#",
-    icon: <RegistrationVector />,
-    soon: true,
-    disabled: true,
-  },
-  {
-    title: "منابع آموزشی",
-    href: "#",
-    icon: <LibraryVector />,
-    soon: true,
-    disabled: true,
+    element: "#guide",
+    popover: {
+      title: "راهنمایی",
+      description:
+        "اگه یادت رفت هر کدوم چی کار میکنه دوباره میتونی برگردی اینجا و این راهنما رو صدا کنی :)",
+      side: "left",
+      align: "start",
+    },
   },
 ];
 
 export default function HomePage() {
+  const { restartTour } = useTour("home", tourSteps);
+
   const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
@@ -106,11 +91,15 @@ export default function HomePage() {
         </>
       )}
 
-      {!showLoader && <HomeLogo />}
+      {!showLoader && (
+        <>
+          <HomeLogo />
+        </>
+      )}
 
       <div>
         <div className="mx-auto mb-2 grid max-w-[1024px] auto-rows-fr grid-cols-2 gap-4 md:grid-cols-3">
-          {items.map((item, i) => (
+          {features.map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -135,8 +124,56 @@ export default function HomePage() {
         </div>
       </div>
 
+      <div className="absolute left-0 top-3 flex flex-col gap-1">
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: calculateAnimationDelay(5),
+          }}
+        >
+          <Link
+            id="about-srcsx"
+            href="/about-srcsx"
+            className="flex items-center gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-2 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-xl"
+          >
+            <img
+              src="/icon.svg"
+              alt="srcsx icon"
+              className="w-[18px] md:h-[28px] md:w-[28px]"
+              fetchPriority="high"
+            />
+            معرفی
+          </Link>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: calculateAnimationDelay(5),
+          }}
+        >
+          <button
+            onClick={() => {
+              restartTour();
+            }}
+            id="guide"
+            className="flex items-center gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-2 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-xl"
+          >
+            <QuestionVector
+              width="18"
+              height="18"
+              className="md:h-[28px] md:w-[28px]"
+            />
+            راهنما
+          </button>
+        </motion.div>
+      </div>
+
       <motion.div
-        className="fixed left-0 top-[34px]"
+        className="absolute right-0 top-[30px]"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{
@@ -145,37 +182,15 @@ export default function HomePage() {
         }}
       >
         <Link
+          id="settings"
           href="/setup"
-          className="flex items-center gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-3 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-xl"
+          className="flex items-center gap-2 rounded-l-full bg-myMain bg-opacity-5 px-3 py-3 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-xl"
         >
+          تنظیمات
           <SetupVector
             width="18"
             height="18"
             className="md:h-[28px] md:w-[28px]"
-          />
-          تنظیمات
-        </Link>
-      </motion.div>
-
-      <motion.div
-        className="fixed right-0 top-[34px]"
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{
-          duration: 0.5,
-          delay: calculateAnimationDelay(5),
-        }}
-      >
-        <Link
-          href="/about-srcsx"
-          className="flex items-center gap-2 rounded-l-full bg-myMain bg-opacity-5 px-3 py-3 pl-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-xl"
-        >
-          معرفی
-          <img
-            src="/icon.svg"
-            alt="srcsx icon"
-            className="w-[18px] md:h-[28px] md:w-[28px]"
-            fetchPriority="high"
           />
         </Link>
       </motion.div>
