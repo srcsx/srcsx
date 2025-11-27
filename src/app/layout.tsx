@@ -19,6 +19,15 @@ export const metadata: Metadata = {
       url: "/icon.png",
     },
   ],
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    startupImage: [
+      {
+        url: "/icon.png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
