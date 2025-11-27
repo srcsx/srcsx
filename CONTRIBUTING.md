@@ -43,10 +43,9 @@
 git clone https://github.com/srcsx/srcsx.git && cd srcsx
 npm install
 cp .env.example .env
-cp mock-data .data
+cp -r mock-data .data
 docker compose up -d
-npx prisma generate
-npx prisma db push && npx prisma db seed
+npx prisma generate && npx prisma db push && npx prisma db seed
 npm run dev
 ```
 
