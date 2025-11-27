@@ -81,7 +81,13 @@ export default function SRCSXSimpleNav() {
           >
             <img
               src="/logo.png"
-              className="w-16 opacity-10 grayscale filter will-change-transform dark:brightness-0 dark:contrast-0"
+              className="block w-16 opacity-10 dark:hidden"
+              alt="srcsx"
+              fetchPriority="high"
+            />
+            <img
+              src="/logo-dark.png"
+              className="hidden w-16 opacity-10 dark:block"
               alt="srcsx"
               fetchPriority="high"
             />

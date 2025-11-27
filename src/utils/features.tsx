@@ -4,8 +4,8 @@ import BookStarVector from "@/assets/vectors/‌BookStarVector";
 import { FlowchartVector } from "@/assets/vectors/FlowchartVector";
 import { DocumentVector } from "@/assets/vectors/DocumentVector";
 import { OpenBookVector } from "@/assets/vectors/OpenBookVector";
-import { RegistrationVector } from "@/assets/vectors/RegistrationVector";
-import { LibraryVector } from "@/assets/vectors/LibraryVector";
+// import { RegistrationVector } from "@/assets/vectors/RegistrationVector";
+// import { LibraryVector } from "@/assets/vectors/LibraryVector";
 
 interface ItemType {
   title: string;
@@ -52,7 +52,6 @@ export const features: ItemType[] = [
     title: "داکیومنت <br /> (راهنما و آموزش ها)",
     href: "docs",
     icon: <DocumentVector />,
-    inProgress: true,
     description:
       "قوانین و مقررات دانشگاه و آموزش رو می‌تونی از اینجا مطالعه کنی.",
   },
@@ -60,7 +59,6 @@ export const features: ItemType[] = [
     title: "دریافت کد درس ها",
     href: "courses-codes",
     icon: <NumbersVector />,
-    inProgress: true,
     description:
       "اگه نیاز داری برای انتخاب واحد کد درس های آموزشیار رو یه جا ذخیره کنی میتونی از اینجا بر داری.",
   },
@@ -68,25 +66,24 @@ export const features: ItemType[] = [
     title: "منابع درسی",
     href: "courses-resources",
     icon: <OpenBookVector />,
-    inProgress: true,
     description: "منابع معتبر درس های دانشگاه رو میتونی از اینجا مشاهده کنی.",
   },
-  {
-    title: "انتخاب واحد آزمایشی",
-    href: "course-registration",
-    icon: <RegistrationVector />,
-    soon: true,
-    disabled: true,
-    description:
-      "از این سیستم میتونی برای انتخاب واحد آزمایشی (در موعد مقرر شده) استفاده کنی.",
-  },
-  {
-    title: "منابع آموزشی",
-    href: "sources",
-    icon: <LibraryVector />,
-    soon: true,
-    disabled: true,
-    description:
-      "منابع آموزشی (خارج از درس های دانشگاه) رو میتونی از اینجا بر داری.",
-  },
+  // {
+  //   title: "انتخاب واحد آزمایشی",
+  //   href: "course-registration",
+  //   icon: <RegistrationVector />,
+  //   soon: true,
+  //   disabled: true,
+  //   description:
+  //     "از این سیستم میتونی برای انتخاب واحد آزمایشی (در موعد مقرر شده) استفاده کنی.",
+  // },
+  // {
+  //   title: "منابع آموزشی",
+  //   href: "sources",
+  //   icon: <LibraryVector />,
+  //   soon: true,
+  //   disabled: true,
+  //   description:
+  //     "منابع آموزشی (خارج از درس های دانشگاه) رو میتونی از اینجا بر داری.",
+  // },
 ];

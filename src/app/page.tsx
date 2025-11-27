@@ -126,8 +126,8 @@ export default function HomePage() {
 
       <div className="absolute left-0 top-3 flex flex-col gap-1">
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{
             duration: 0.5,
             delay: calculateAnimationDelay(5),
@@ -136,7 +136,7 @@ export default function HomePage() {
           <Link
             id="about-srcsx"
             href="/about-srcsx"
-            className="flex items-center gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-2 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-xl"
+            className="flex items-center justify-between gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-2 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-lg"
           >
             <img
               src="/icon.svg"
@@ -148,8 +148,8 @@ export default function HomePage() {
           </Link>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{
             duration: 0.5,
             delay: calculateAnimationDelay(5),
@@ -160,7 +160,7 @@ export default function HomePage() {
               restartTour();
             }}
             id="guide"
-            className="flex items-center gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-2 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-xl"
+            className="flex items-center justify-between gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-2 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-lg"
           >
             <QuestionVector
               width="18"
@@ -174,8 +174,8 @@ export default function HomePage() {
 
       <motion.div
         className="absolute right-0 top-[30px]"
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{
           duration: 0.5,
           delay: calculateAnimationDelay(5),
@@ -184,7 +184,7 @@ export default function HomePage() {
         <Link
           id="settings"
           href="/setup"
-          className="flex items-center gap-2 rounded-l-full bg-myMain bg-opacity-5 px-3 py-3 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-xl"
+          className="flex items-center gap-2 rounded-l-full bg-myMain bg-opacity-5 px-3 py-3 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-lg"
         >
           تنظیمات
           <SetupVector
