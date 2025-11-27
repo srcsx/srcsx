@@ -1,4 +1,4 @@
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 

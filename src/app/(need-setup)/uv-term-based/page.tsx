@@ -16,7 +16,7 @@ import { useUvTermBasedStore } from "@/store/uvTermBasedStore";
 import UVTermBasedMainGuideBox from "@/components/pages/uv-term-based/UVTermBasedMainGuideBox";
 import { useRouter } from "next/navigation";
 import { usePageActions } from "@/store/usePageActions";
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 
 interface ResultType {
   issues: { term: number; message: string }[];

@@ -6,5 +6,13 @@
     "minEntryYear": 1400,
     "maxEntryYear": 1500,
     "hasFlowChart": true
+  },
+  {
+    "id": 101001,
+    "majorId": 101,
+    "name": "سرفصل 1399 و به قبل",
+    "minEntryYear": 1396,
+    "maxEntryYear": 1399,
+    "hasFlowChart": false
   }
 ]

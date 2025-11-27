@@ -1,4 +1,4 @@
-import { Course, CourseRequisite } from "@prisma/client";
+import { Course, CourseRequisite } from "@/generated/prisma/client";
 
 type RawCourse = Partial<Course> & {
   preCourseRequisites: CourseRequisite[];

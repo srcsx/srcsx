@@ -1,6 +1,6 @@
 "use client";
 import KidStarIcon from "@/assets/icons/KidStarIcon";
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 import { motion } from "framer-motion";
 import React from "react";
 import Xarrow from "react-xarrows";

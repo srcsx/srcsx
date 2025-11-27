@@ -10,7 +10,7 @@ import { CopyIcon } from "@/assets/icons/CopyIcon";
 import CourseResourcesSkletons from "@/components/pages/courses-resources/CourseResourcesSkletons";
 import CoursesResourcesGuideBox from "@/components/pages/courses-resources/CoursesResourcesGuideBox";
 import { usePageActions } from "@/store/usePageActions";
-import { Course, CourseResource } from "@prisma/client";
+import { Course, CourseResource } from "@/generated/prisma/client";
 
 export default function CoursesResourcesPage() {
   // Main states.

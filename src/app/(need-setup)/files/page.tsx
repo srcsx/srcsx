@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import SelectHeading from "@/components/layout/SelectHeading";
 import { DownloadIcon } from "@/assets/icons/DownloadIcon";
 import FilesSkletons from "@/components/pages/files/FilesSkletons";
-import { File } from "@prisma/client";
+import { File } from "@/generated/prisma/client";
 
 export default function FilesPage() {
   // Main states.

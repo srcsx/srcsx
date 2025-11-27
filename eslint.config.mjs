@@ -1,10 +1,14 @@
 import { FlatCompat } from "@eslint/eslintrc";
+import { defineConfig } from "eslint/config";
+import { globalIgnores } from "eslint/config";
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
 
-const eslintConfig = [
+const eslintConfig = defineConfig([
+  globalIgnores(["src/generated/"]),
+
   ...compat.config({
     extends: [
       "next",
@@ -17,7 +21,6 @@ const eslintConfig = [
     rules: {
       "prettier/prettier": [
         "error",
-
         {
           usePrettierrc: true,
         },
@@ -32,6 +35,6 @@ const eslintConfig = [
       "jsx-a11y/role-supports-aria-props": "warn",
     },
   }),
-];
+]);
 
 export default eslintConfig;

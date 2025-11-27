@@ -10,7 +10,7 @@ import CoursesCodesGuideBox from "@/components/pages/courses-codes/CoursesCodesG
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { CopyIcon } from "@/assets/icons/CopyIcon";
 import CourseCodesSkletons from "@/components/pages/courses-codes/CourseCodesSkletons";
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 
 export default function CoursesCodesPage() {
   // Main states.

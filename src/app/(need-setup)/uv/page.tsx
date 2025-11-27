@@ -8,7 +8,7 @@ import { useUserStore } from "@/store/userStore";
 import { UV_STAGE_TYPE } from "@/types/uv";
 import { useUvStore } from "@/store/uvStore";
 import { usePageActions } from "@/store/usePageActions";
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 
 export default function UVPage() {
   // Set search params.

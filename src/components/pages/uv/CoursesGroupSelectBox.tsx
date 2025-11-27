@@ -1,7 +1,7 @@
 import CursorIcon from "@/assets/icons/CursorIcon";
 import TrashIcon from "@/assets/icons/TrashIcon";
 import CourseButton from "./CourseButton";
-import { Course, CourseGroup } from "@prisma/client";
+import { Course, CourseGroup } from "@/generated/prisma/client";
 
 export default function CoursesGroupSelectBox({
   group,

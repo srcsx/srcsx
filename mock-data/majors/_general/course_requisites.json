@@ -1,0 +1,32 @@
+[
+  {
+    "syllabusId": null,
+    "courseId": 100102,
+    "courseRequisiteId": 100101,
+    "corequisite": false
+  },
+  {
+    "syllabusId": null,
+    "courseId": 100105,
+    "courseRequisiteId": 100104,
+    "corequisite": false
+  },
+  {
+    "syllabusId": null,
+    "courseId": 100106,
+    "courseRequisiteId": 100105,
+    "corequisite": false
+  },
+  {
+    "syllabusId": null,
+    "courseId": 100107,
+    "courseRequisiteId": 100106,
+    "corequisite": false
+  },
+  {
+    "syllabusId": null,
+    "courseId": 100109,
+    "courseRequisiteId": 100108,
+    "corequisite": false
+  }
+]

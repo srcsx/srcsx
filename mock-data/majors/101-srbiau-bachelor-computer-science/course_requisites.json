@@ -1,0 +1,278 @@
+[
+  {
+    "syllabusId": 101000,
+    "courseId": 101101,
+    "courseRequisiteId": 101100,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101103,
+    "courseRequisiteId": 101101,
+    "corequisite": true
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101108,
+    "courseRequisiteId": 101102,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101111,
+    "courseRequisiteId": 101100,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101112,
+    "courseRequisiteId": 101111,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101114,
+    "courseRequisiteId": 101101,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101115,
+    "courseRequisiteId": 101100,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101116,
+    "courseRequisiteId": 101111,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101117,
+    "courseRequisiteId": 101104,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101118,
+    "courseRequisiteId": 101117,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101119,
+    "courseRequisiteId": 101118,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101120,
+    "courseRequisiteId": 101112,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101121,
+    "courseRequisiteId": 101117,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101122,
+    "courseRequisiteId": 101111,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101123,
+    "courseRequisiteId": 101118,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101124,
+    "courseRequisiteId": 101112,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101125,
+    "courseRequisiteId": 101116,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101126,
+    "courseRequisiteId": 101118,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101126,
+    "courseRequisiteId": 101115,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101127,
+    "courseRequisiteId": 101118,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101128,
+    "courseRequisiteId": 101116,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101129,
+    "courseRequisiteId": 101118,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101130,
+    "courseRequisiteId": 101121,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101132,
+    "courseRequisiteId": 101124,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101133,
+    "courseRequisiteId": 101113,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101134,
+    "courseRequisiteId": 101114,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101135,
+    "courseRequisiteId": 101118,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101136,
+    "courseRequisiteId": 101115,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101138,
+    "courseRequisiteId": 101105,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101139,
+    "courseRequisiteId": 101105,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101140,
+    "courseRequisiteId": 101139,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101141,
+    "courseRequisiteId": 101117,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101142,
+    "courseRequisiteId": 101124,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101143,
+    "courseRequisiteId": 101100,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101143,
+    "courseRequisiteId": 101111,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101144,
+    "courseRequisiteId": 101111,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101145,
+    "courseRequisiteId": 101112,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101146,
+    "courseRequisiteId": 101118,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101147,
+    "courseRequisiteId": 101118,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101148,
+    "courseRequisiteId": 101113,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101148,
+    "courseRequisiteId": 101122,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101149,
+    "courseRequisiteId": 101110,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101150,
+    "courseRequisiteId": 101101,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101151,
+    "courseRequisiteId": 101115,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101153,
+    "courseRequisiteId": 101123,
+    "corequisite": false
+  },
+  {
+    "syllabusId": 101000,
+    "courseId": 101154,
+    "courseRequisiteId": 101152,
+    "corequisite": false
+  }
+]

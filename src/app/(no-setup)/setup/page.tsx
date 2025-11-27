@@ -10,7 +10,7 @@ import SelectButton from "@/components/pages/setup/SelectButton";
 import ArrowLeftIcon from "@/assets/icons/ArrowLeftIcon";
 import PrimaryInput from "@/components/utils/inputs/PrimaryInput";
 import TrashIcon from "@/assets/icons/TrashIcon";
-import { Major } from "@prisma/client";
+import { Major } from "@/generated/prisma/client";
 
 const firstYear = 1396;
 const lastYear = 1404;

@@ -1,6 +1,6 @@
 import prisma from "@/utils/prisma";
 import { getUserData } from "@/utils/userData";
-import { CourseReference, CourseResource } from "@prisma/client";
+import { CourseReference, CourseResource } from "@/generated/prisma/client";
 
 export const getCoursesByGroups = async () => {
   const user = await getUserData();
@@ -120,14 +120,14 @@ export const getRawCourses = async (
     },
   });
 
-  return courses.map((course) => ({
+  return courses.map((course: any) => ({
     ...course,
 
     defaultTerm: course.termCoursesSyllabus?.term ?? null,
 
     ...(setRequired && {
       required:
-        course.courseGroups?.some((g) => g.type === "required") ?? false,
+        course.courseGroups?.some((g: any) => g.type === "required") ?? false,
     }),
 
     ...(setResources && {
@@ -185,7 +185,7 @@ export const getCoursesForFlowchart = async () => {
     },
   });
 
-  return courses.map((course) => ({
+  return courses.map((course: any) => ({
     ...course,
     unitRequisites:
       course.unitRequisites.length > 0 ? course.unitRequisites[0].unit : null,

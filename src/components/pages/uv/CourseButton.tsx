@@ -1,7 +1,7 @@
 import React from "react";
 import StepsIcon from "@/assets/icons/StepsIcon";
 import KidStarIcon from "@/assets/icons/KidStarIcon";
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 
 export default function CourseButton({
   onClick,

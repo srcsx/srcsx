@@ -2,7 +2,7 @@
 import PageHeading from "@/components/layout/PageHeading";
 import { usePageActions } from "@/store/usePageActions";
 import axiosInstance from "@/utils/connect";
-import { Doc, DocSection } from "@prisma/client";
+import { Doc, DocSection } from "@/generated/prisma/client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 

@@ -1,4 +1,4 @@
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 
 export type UV_STAGE_TYPE = "SELECT_COURSE" | "FINAL_RESULT";
 

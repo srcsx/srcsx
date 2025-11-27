@@ -1,5 +1,5 @@
 import KidStarIcon from "@/assets/icons/KidStarIcon";
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 
 interface ResultObject {
   name: string;

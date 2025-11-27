@@ -7,7 +7,7 @@ import PrimaryInput from "@/components/utils/inputs/PrimaryInput";
 import { UV_STAGE_TYPE } from "@/types/uv";
 import UVMainGuideBox from "../UVMainGuideBox";
 import CoursesGroupSelectBox from "../CoursesGroupSelectBox";
-import { Course, CourseGroup } from "@prisma/client";
+import { Course, CourseGroup } from "@/generated/prisma/client";
 
 export default function SelectCourseStage({
   setSelectedCourses,

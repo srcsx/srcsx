@@ -1,4 +1,4 @@
-import { Course, CourseGroup } from "@prisma/client";
+import { Course, CourseGroup } from "@/generated/prisma/client";
 
 interface FinalResultGroup {
   name: string;

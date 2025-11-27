@@ -6,7 +6,7 @@ import FlowchartNode from "@/components/pages/flowchart/FlowchartNode";
 import FlowchartMainGuideBox from "@/components/pages/flowchart/FlowchartMainGuideBox";
 import { useUvTermBasedStore } from "@/store/uvTermBasedStore";
 import FlowchartSkletons from "@/components/pages/flowchart/FlowchartSkletons";
-import { Course } from "@prisma/client";
+import { Course } from "@/generated/prisma/client";
 import { useUvStore } from "@/store/uvStore";
 
 type ModifiedCourse = Course & {
