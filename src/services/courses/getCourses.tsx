@@ -57,7 +57,7 @@ export const getRawCourses = async (
     },
   };
 
-  if (mainCourses) {
+  if (mainCourses && !generalCourses) {
     where.courseGroups.some = {
       syllabus: {
         majorId: user.majorId,
@@ -77,16 +77,20 @@ export const getRawCourses = async (
         },
       ],
     };
-  } else if (mainCourses && generalCourses) {
+  } else {
     where.courseGroups.some = {
       OR: [
-        { syllabusId: null },
         {
           syllabus: {
             majorId: user.majorId,
             minEntryYear: { lte: user.year },
             maxEntryYear: { gte: user.year },
           },
+        },
+        {
+          syllabusId: null,
+          minEntryYear: { lte: user.year },
+          maxEntryYear: { gte: user.year },
         },
       ],
     };
