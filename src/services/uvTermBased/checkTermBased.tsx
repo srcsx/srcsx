@@ -18,8 +18,11 @@ export function checkTermBased(courses: RawCourse[], input: number[][]) {
       }
 
       if (c.preCourseRequisites.length > 0) {
-        const missingPrereqs = c.preCourseRequisites.filter(
-          (c) => !passedCourses.includes(c.courseRequisiteId),
+        const missingPrereqs = c.preCourseRequisites.filter((preC) =>
+          preC.corequisite
+            ? !passedCourses.includes(preC.courseRequisiteId) &&
+              !cs.includes(preC.courseRequisiteId)
+            : !passedCourses.includes(preC.courseRequisiteId),
         );
 
         if (missingPrereqs.length > 0) {
@@ -30,8 +33,14 @@ export function checkTermBased(courses: RawCourse[], input: number[][]) {
             .filter(Boolean)
             .join("، ");
 
+          if (missingNames == "") {
+            return;
+          }
+
+          const d = (term_index + 1) / 3;
+
           issues.push({
-            term: term_index + 1,
+            term: Math.ceil(term_index - d),
             message:
               "پیش‌نیازهای درس " +
               `"${c.name}"` +
