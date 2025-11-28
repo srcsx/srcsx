@@ -17,6 +17,7 @@ import UVTermBasedMainGuideBox from "@/components/pages/uv-term-based/UVTermBase
 import { useRouter } from "next/navigation";
 import { usePageActions } from "@/store/usePageActions";
 import { Course } from "@/generated/prisma/client";
+import { useUserStore } from "@/store/userStore";
 
 interface ResultType {
   issues: { term: number; message: string }[];
@@ -172,6 +173,37 @@ export default function UVTermBasedPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router, setActions, clearActions, stage, passedUnitsStore]);
 
+  const { user } = useUserStore();
+
+  const generateTermName = (i: number) => {
+    const year = user?.year;
+
+    if (!year) {
+      return i;
+    }
+
+    const r = i % 3;
+    const d = i / 3;
+
+    let modifiedYear = year;
+
+    if (d % 1 !== 0 && i > 2) {
+      modifiedYear = year + Math.floor(d);
+    } else if (i > 2) {
+      modifiedYear = year + d - 1;
+    }
+
+    return (
+      (r !== 0 ? Math.ceil(i - d).toString() : "*") +
+      " - " +
+      "نیمسال " +
+      modifiedYear.toString().substring(1) +
+      (r === 0 ? "3" : r.toString()) +
+      " " +
+      (r === 0 ? "(تابستان)" : r === 1 ? "(مهر)" : "(بهمن)")
+    );
+  };
+
   return (
     <div className="pb-12">
       <PageHeading title="بررسی واحد بر اساس ترم" />
@@ -194,7 +226,7 @@ export default function UVTermBasedPage() {
                     onClick={() => toggleDropdown(i)}
                   >
                     <div className="flex items-center gap-4">
-                      <div className="font-bold">ترم {i + 1}</div>
+                      <div className="font-bold">{generateTermName(i + 1)}</div>
                       <div className="font-light">
                         {term.units} واحد پاس شده
                       </div>
@@ -263,11 +295,14 @@ export default function UVTermBasedPage() {
 
                         {fetchCourses &&
                           fetchCourses?.filter(
-                            (c) => !coursesStore.includes(c.id),
+                            (c) =>
+                              !coursesStore.includes(c.id) &&
+                              c.defaultTerm &&
+                              c.defaultTerm <= i + 1,
                           ).length > 0 && (
                             <div className="mt-4">
                               <div className="mb-2 text-sm font-bold text-myBlack dark:text-gray-200">
-                                درس های پیشفرض ترم {i + 1}:{" "}
+                                درس های پیشفرض :{" "}
                               </div>
                               <div className="flex flex-wrap gap-2">
                                 {fetchCourses
@@ -319,7 +354,7 @@ export default function UVTermBasedPage() {
                 </div>
               ))}
 
-              {termsStore.length < 14 && (
+              {termsStore.length < 20 && (
                 <button
                   className="relative flex w-full items-center justify-between gap-4 rounded-2xl bg-myMain bg-opacity-5 p-6 text-xs text-myBlack transition-all hover:bg-opacity-10 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:p-8 md:text-base"
                   onClick={() => addNewTerm()}

@@ -23,7 +23,7 @@ interface UvTermBasedStoreType {
 export const useUvTermBasedStore = create<UvTermBasedStoreType>()(
   persist(
     (set) => ({
-      termsStore: Array.from({ length: 8 }, () => ({
+      termsStore: Array.from({ length: 11 }, () => ({
         courses: [],
         units: 0,
       })),
@@ -38,7 +38,7 @@ export const useUvTermBasedStore = create<UvTermBasedStoreType>()(
 
       clearAll: () =>
         set({
-          termsStore: Array.from({ length: 8 }, () => ({
+          termsStore: Array.from({ length: 11 }, () => ({
             courses: [],
             units: 0,
           })),

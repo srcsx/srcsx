@@ -18,7 +18,6 @@ export default function FinalCoursesResult({ final }: { final: ResultFinal }) {
     <>
       {final?.data.length > 0 && (
         <div className="mb-8">
-          <h3 className="mb-4 font-bold dark:text-gray-200">تخصصی ها</h3>
           {final?.data?.map((group, index) => (
             <div key={index} className="mb-4">
               <div className="mb-2 border-r border-myBlack pb-1 pr-2 font-light dark:border-gray-200 dark:text-gray-200">
