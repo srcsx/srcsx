@@ -8,10 +8,59 @@ import { useUvTermBasedStore } from "@/store/uvTermBasedStore";
 import FlowchartSkletons from "@/components/pages/flowchart/FlowchartSkletons";
 import { Course } from "@/generated/prisma/client";
 import { useUvStore } from "@/store/uvStore";
+import { toPng } from "html-to-image";
+import jsPDF from "jspdf";
+
 
 type ModifiedCourse = Course & {
   childs?: ModifiedCourse[];
   required?: boolean;
+};
+
+// pdf downloader
+const downloadPDF = async () => {
+  const element = document.getElementById("flowchart-container");
+  if (!element) return;
+
+  // padding
+  const padding = 40;
+
+  // Calculate the final dimensions including padding
+  const width = element.scrollWidth + padding * 2;
+  const height = element.scrollHeight + padding * 2;
+
+  // Store original styles to restore later
+  const originalOverflow = element.style.overflow;
+  const originalPadding = element.style.padding;
+
+  // Temporarily hide scrollbars and apply padding for clean rendering
+  element.style.overflow = "hidden";
+  element.style.padding = `${padding}px`;
+
+  // Render element to PNG with custom width/height
+  const dataUrl = await toPng(element, {
+    cacheBust: true,
+    pixelRatio: 1.5, // Good balance of quality vs file size
+    width,
+    height,
+  });
+
+  // Restore original styles
+  element.style.overflow = originalOverflow;
+  element.style.padding = originalPadding;
+
+  // Create a PDF sized exactly to the rendered flowchart
+  const pdf = new jsPDF({
+    orientation: width > height ? "landscape" : "portrait",
+    unit: "px",
+    format: [width, height],
+  });
+
+  // Insert the PNG into the PDF
+  pdf.addImage(dataUrl, "PNG", 0, 0, width, height);
+
+  // Save the file
+  pdf.save("flowchart.pdf");
 };
 
 export default function FlowchartPage() {
@@ -59,18 +108,16 @@ export default function FlowchartPage() {
                   ? setShowPassedCourses(null)
                   : setShowPassedCourses("uv-term-based")
               }
-              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${
-                showPassedCourses === "uv-term-based"
-                  ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
-                  : "opacity-50"
-              }`}
+              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${showPassedCourses === "uv-term-based"
+                ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
+                : "opacity-50"
+                }`}
             >
               <div
-                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${
-                  showPassedCourses === "uv-term-based"
-                    ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
-                    : ""
-                }`}
+                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${showPassedCourses === "uv-term-based"
+                  ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
+                  : ""
+                  }`}
               ></div>
               فیلتر درس های پاس شده بر اساس واحد درسی (ترم)
             </button>
@@ -80,21 +127,28 @@ export default function FlowchartPage() {
                   ? setShowPassedCourses(null)
                   : setShowPassedCourses("uv")
               }
-              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${
-                showPassedCourses === "uv"
-                  ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
-                  : "opacity-50"
-              }`}
+              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${showPassedCourses === "uv"
+                ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
+                : "opacity-50"
+                }`}
             >
               <div
-                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${
-                  showPassedCourses === "uv"
-                    ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
-                    : ""
-                }`}
+                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${showPassedCourses === "uv"
+                  ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
+                  : ""
+                  }`}
               ></div>
               فیلتر درس های پاس شده بر واحد درسی
             </button>
+
+            <button
+              onClick={downloadPDF}
+              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 opacity-50 hover:opacity-100 transition`}
+            >
+              دانلود PDF
+            </button>
+
+
           </div>
 
           <div
