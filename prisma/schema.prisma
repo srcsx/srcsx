@@ -24,9 +24,10 @@ model Major {
   id           Int @id @default(autoincrement())
   universityId Int
 
-  type DegreeLevel @default(bachelor)
-  slug String      @unique
-  name String
+  type              DegreeLevel @default(bachelor)
+  slug              String      @unique
+  name              String
+  verificationLevel Int         @default(0) @db.SmallInt
 
   university University @relation(fields: [universityId], references: [id], onDelete: Cascade)
   syllabi    Syllabus[]

@@ -4,6 +4,7 @@ import BookStarVector from "@/assets/vectors/‌BookStarVector";
 import { FlowchartVector } from "@/assets/vectors/FlowchartVector";
 import { DocumentVector } from "@/assets/vectors/DocumentVector";
 import { OpenBookVector } from "@/assets/vectors/OpenBookVector";
+import { SparkleVector } from "@/assets/vectors/SparkleVector";
 // import { RegistrationVector } from "@/assets/vectors/RegistrationVector";
 // import { LibraryVector } from "@/assets/vectors/LibraryVector";
 
@@ -33,6 +34,15 @@ export const features: ItemType[] = [
     icon: <UvVector />,
     description:
       "دقیقا مثل سیستم قبلی اینجا هم برای بررسی واحد های درسیته با این تفاوت که بر اساس ترم های تحصیلیت وارد می‌کنی تا وضعیت پیش‌نیاز هات هم مشخص باشه",
+  },
+  {
+    title: "برنامه‌ریزی واحد های درسی",
+    href: "planning",
+    soon: true,
+    disabled: true,
+    icon: <SparkleVector />,
+    description:
+      "اینجا میتونی برای ترم های آیندت برنامه ریزی کنه و اهدافت رو مشخصه کنی.",
   },
   {
     title: "فلوچارت درسی",

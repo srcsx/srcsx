@@ -204,6 +204,10 @@ export default function UVTermBasedPage() {
     );
   };
 
+  const isTabestan = (i: number) => {
+    return i % 3 === 0;
+  };
+
   return (
     <div className="pb-12">
       <PageHeading title="بررسی واحد بر اساس ترم" />
@@ -222,17 +226,30 @@ export default function UVTermBasedPage() {
                   className="rounded-2xl bg-myMain bg-opacity-5 text-myBlack dark:bg-black dark:bg-opacity-20 dark:text-gray-200"
                 >
                   <button
-                    className="relative flex w-full items-center justify-between gap-4 rounded-2xl bg-myMain bg-opacity-0 p-6 text-xs transition-all hover:bg-opacity-5 md:p-8 md:text-base"
+                    className="relative flex w-full items-center justify-between gap-4 rounded-2xl bg-myMain bg-opacity-0 p-4 text-xs transition-all hover:bg-opacity-5 md:p-6 md:p-8 md:text-base"
                     onClick={() => toggleDropdown(i)}
                   >
                     <div className="flex items-center gap-4">
                       <div className="font-bold">{generateTermName(i + 1)}</div>
-                      <div className="font-light">
-                        {term.units} واحد پاس شده
-                      </div>
                     </div>
-                    <div className={openIndex === i ? "rotate-180" : ""}>
-                      <ArrowDownIcon />
+                    <div className="flex items-center gap-2">
+                      <div className="font-light">
+                        <b className="font-bold">{term.units}</b> از{" "}
+                        {isTabestan(i + 1) ? 10 : 24} واحد
+                      </div>
+                      <div className={openIndex === i ? "rotate-180" : ""}>
+                        <ArrowDownIcon />
+                      </div>
+                      {i === termsStore.length - 1 && i > 10 && (
+                        <button
+                          className="text-red-600"
+                          onClick={() => {
+                            setTermsStore(termsStore.slice(0, -1));
+                          }}
+                        >
+                          <TrashIcon />
+                        </button>
+                      )}
                     </div>
                   </button>
 
@@ -243,7 +260,7 @@ export default function UVTermBasedPage() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.35, ease: "easeOut" }}
-                        className="mt-4 overflow-hidden rounded-lg bg-gray-100 p-4 dark:bg-black dark:bg-opacity-20"
+                        className="overflow-hidden rounded-lg bg-gray-100 p-4 dark:bg-black dark:bg-opacity-20 md:mt-4"
                       >
                         <div className="relative mb-8">
                           <PrimaryInput
@@ -269,7 +286,7 @@ export default function UVTermBasedPage() {
                           (course) => !coursesStore.includes(course.id),
                         ).length > 0 && (
                           <div>
-                            <div className="mb-2 text-sm font-bold text-myBlack dark:text-gray-200">
+                            <div className="mb-4 text-sm font-light text-myBlack dark:text-gray-200">
                               نتیجه جستجو:{" "}
                             </div>
                             <div className="flex flex-wrap gap-2">
@@ -301,7 +318,7 @@ export default function UVTermBasedPage() {
                               c.defaultTerm <= i + 1,
                           ).length > 0 && (
                             <div className="mt-4">
-                              <div className="mb-2 text-sm font-bold text-myBlack dark:text-gray-200">
+                              <div className="mb-4 text-sm font-light text-myBlack dark:text-gray-200">
                                 درس های پیشفرض :{" "}
                               </div>
                               <div className="flex flex-wrap gap-2">
@@ -333,9 +350,46 @@ export default function UVTermBasedPage() {
 
                         {term.courses.length > 0 && (
                           <div className="mt-4">
-                            <div className="mb-2 text-sm font-bold text-myBlack dark:text-gray-200">
-                              درس های انتخاب شده:{" "}
+                            <div className="mb-4 flex items-center justify-between">
+                              <div className="text-sm font-light text-myBlack dark:text-gray-200">
+                                درس های انتخاب شده:{" "}
+                              </div>
+
+                              {term.courses.length > 0 && (
+                                <button
+                                  className={`flex items-center gap-x-2 rounded-lg bg-red-50 px-2 py-2 text-xs font-light text-red-700 dark:font-bold md:text-sm`}
+                                  onClick={() => {
+                                    setTermsStore(
+                                      termsStore.map((t, index) => {
+                                        if (index === i) {
+                                          setCoursesStore(
+                                            coursesStore.filter(
+                                              (c) =>
+                                                !t.courses.find(
+                                                  (cs) => cs.id === c,
+                                                ),
+                                            ),
+                                          );
+
+                                          setPassedUnitsStore(
+                                            passedUnitsStore - t.units,
+                                          );
+
+                                          t.courses = [];
+                                          t.units = 0;
+                                        }
+
+                                        return t;
+                                      }),
+                                    );
+                                  }}
+                                >
+                                  <TrashIcon width={18} height={18} />
+                                  <span>حذف همه</span>
+                                </button>
+                              )}
                             </div>
+
                             <div className="flex flex-wrap gap-2">
                               {term.courses.map((course, index) => (
                                 <CourseButton
