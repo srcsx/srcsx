@@ -38,8 +38,7 @@ export const features: ItemType[] = [
   {
     title: "برنامه‌ریزی واحد های درسی",
     href: "planning",
-    soon: true,
-    disabled: true,
+    beta: true,
     icon: <SparkleVector />,
     description:
       "اینجا میتونی برای ترم های آیندت برنامه ریزی کنه و اهدافت رو مشخصه کنی.",
