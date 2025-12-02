@@ -9,6 +9,7 @@ import { useUvTermBasedStore } from "./uvTermBasedStore";
 export interface User {
   majorId?: number;
   year?: number;
+  universityId?: number;
 }
 
 interface UserStore {
@@ -30,7 +31,7 @@ export const cookieStorage: PersistStorage<any> = {
   },
   setItem: (name: string, value: any) => {
     Cookies.set(name, JSON.stringify(value), {
-      expires: 7,
+      expires: 365 * 100,
       path: "/",
       sameSite: "lax",
     });
@@ -52,7 +53,9 @@ export const useUserStore = create<UserStore>()(
 
           if (
             (prev && partial.majorId && partial.majorId !== prev.majorId) ||
-            (partial.year && partial.year !== prev?.year)
+            (partial.year && partial.year !== prev?.year) ||
+            (partial.universityId &&
+              partial.universityId !== prev?.universityId)
           ) {
             useUvStore.getState().clearAll();
             useUvTermBasedStore.getState().clearAll();
@@ -65,6 +68,19 @@ export const useUserStore = create<UserStore>()(
     {
       name: "user-storage",
       storage: cookieStorage,
+      version: 1,
+      migrate: (persistedState: any, version) => {
+        if (version === 0 && persistedState) {
+          return {
+            ...persistedState,
+            user: {
+              ...persistedState.user,
+              universityId: persistedState.user?.universityId ?? 1,
+            },
+          };
+        }
+        return persistedState;
+      },
     },
   ),
 );
