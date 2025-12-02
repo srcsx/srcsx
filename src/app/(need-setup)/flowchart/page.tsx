@@ -11,7 +11,6 @@ import { useUvStore } from "@/store/uvStore";
 import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 
-
 type ModifiedCourse = Course & {
   childs?: ModifiedCourse[];
   required?: boolean;
@@ -108,16 +107,18 @@ export default function FlowchartPage() {
                   ? setShowPassedCourses(null)
                   : setShowPassedCourses("uv-term-based")
               }
-              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${showPassedCourses === "uv-term-based"
-                ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
-                : "opacity-50"
-                }`}
+              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${
+                showPassedCourses === "uv-term-based"
+                  ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
+                  : "opacity-50"
+              }`}
             >
               <div
-                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${showPassedCourses === "uv-term-based"
-                  ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
-                  : ""
-                  }`}
+                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${
+                  showPassedCourses === "uv-term-based"
+                    ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
+                    : ""
+                }`}
               ></div>
               فیلتر درس های پاس شده بر اساس واحد درسی (ترم)
             </button>
@@ -127,28 +128,28 @@ export default function FlowchartPage() {
                   ? setShowPassedCourses(null)
                   : setShowPassedCourses("uv")
               }
-              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${showPassedCourses === "uv"
-                ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
-                : "opacity-50"
-                }`}
+              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${
+                showPassedCourses === "uv"
+                  ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
+                  : "opacity-50"
+              }`}
             >
               <div
-                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${showPassedCourses === "uv"
-                  ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
-                  : ""
-                  }`}
+                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${
+                  showPassedCourses === "uv"
+                    ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
+                    : ""
+                }`}
               ></div>
               فیلتر درس های پاس شده بر واحد درسی
             </button>
 
             <button
               onClick={downloadPDF}
-              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 opacity-50 hover:opacity-100 transition`}
+              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm opacity-50 transition hover:opacity-100 dark:border-gray-200 dark:text-gray-200 md:px-6`}
             >
               دانلود PDF
             </button>
-
-
           </div>
 
           <div

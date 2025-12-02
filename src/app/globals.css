@@ -4,19 +4,19 @@
 
 @font-face {
   font-family: Samim;
-  src:  url('/fonts/Samim/Samim-FD.woff2') format('woff2');
+  src: url("/fonts/Samim/Samim-FD.woff2") format("woff2");
   font-weight: normal;
 }
 
 @font-face {
   font-family: Samim;
-  src:  url('/fonts/Samim/Samim-bold-FD.woff2') format('woff2');
+  src: url("/fonts/Samim/Samim-bold-FD.woff2") format("woff2");
   font-weight: bold;
 }
 
 @font-face {
   font-family: Samim;
-  src:  url('/fonts/Samim/Samim-Medium-FD.woff2') format('woff2');
+  src: url("/fonts/Samim/Samim-Medium-FD.woff2") format("woff2");
   font-weight: 500;
 }
 
@@ -36,33 +36,32 @@ body {
   @apply relative w-full animate-pulse rounded-2xl bg-gray-200 transition-all dark:bg-black dark:bg-opacity-20;
 }
 
-
 .driver-popover-title {
-  font-weight: 300!important;
-  color: '#222'
+  font-weight: 300 !important;
+  color: "#222";
 }
 
 .driver-popover-description {
-  font-weight: 300!important;
-  color: '#222'
+  font-weight: 300 !important;
+  color: "#222";
 }
 
 .driver-popover * {
-  font-family: Samim!important;
+  font-family: Samim !important;
 }
 
 .driver-popover {
-  border-radius: 16px!important;
-  padding: 32px!important;
+  border-radius: 16px !important;
+  padding: 32px !important;
 }
 
 .driver-popover-close-btn {
-  left: 8px!important;
-  top: 8px!important;
-  right: auto!important;
+  left: 8px !important;
+  top: 8px !important;
+  right: auto !important;
 }
 
 .driver-popover-next-btn {
-  margin-right: 4px!important;
-  margin-left: 0!important;
+  margin-right: 4px !important;
+  margin-left: 0 !important;
 }
