@@ -24,7 +24,7 @@ export default function ItemLink({
       id={"main-item-" + href}
       href={disabled ? "#" : "/" + href}
       prefetch={false}
-      className={`relative flex h-full w-full flex-col items-center justify-center gap-4 rounded-2xl bg-myMain bg-opacity-5 p-6 text-xs text-myBlack transition-all dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:p-8 md:text-base ${
+      className={`relative flex h-full min-h-[160px] w-full flex-col items-center justify-center gap-4 rounded-2xl bg-myMain bg-opacity-5 p-6 text-xs text-myBlack transition-all dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:min-h-[192px] md:p-8 md:text-base ${
         disabled ? "pointer-events-none opacity-50" : "hover:bg-opacity-10"
       }`}
     >

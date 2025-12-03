@@ -5,7 +5,6 @@ import Loader from "@/components/pages/home/Loader";
 import { motion } from "framer-motion";
 import HomeLogo from "@/components/pages/home/HomeLogo";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { QuestionVector } from "@/assets/vectors/QuestionVector";
 import { features } from "@/utils/features";
 import { DriveStep } from "driver.js";
@@ -21,6 +20,17 @@ const tourSteps: DriveStep[] = [
       align: "start",
     },
   },
+  ...(features.map((i) => {
+    return {
+      element: "#main-item-" + i.href,
+      popover: {
+        title: i.title,
+        description: i.description ?? "متن تست.",
+        side: "left",
+        align: "start",
+      },
+    };
+  }) as DriveStep[]),
   {
     element: "#settings",
     popover: {
@@ -41,17 +51,6 @@ const tourSteps: DriveStep[] = [
       align: "start",
     },
   },
-  ...(features.map((i) => {
-    return {
-      element: "#main-item-" + i.href,
-      popover: {
-        title: i.title,
-        description: i.description ?? "متن تست.",
-        side: "left",
-        align: "start",
-      },
-    };
-  }) as DriveStep[]),
   {
     element: "#guide",
     popover: {
@@ -97,8 +96,8 @@ export default function HomePage() {
         </>
       )}
 
-      <div>
-        <div className="mx-auto mb-2 grid max-w-[1024px] auto-rows-fr grid-cols-2 gap-4 md:grid-cols-3">
+      <div className="mx-auto max-w-[1024px]">
+        <div className="mb-8 grid auto-rows-fr grid-cols-2 gap-4 md:grid-cols-3">
           {features.map((item, i) => (
             <motion.div
               key={i}
@@ -122,78 +121,70 @@ export default function HomePage() {
             </motion.div>
           ))}
         </div>
-      </div>
 
-      <div className="absolute left-0 top-3 flex flex-col gap-1">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.5,
-            delay: calculateAnimationDelay(5),
-          }}
-        >
-          <Link
-            id="about-srcsx"
-            href="/about-srcsx"
-            className="flex items-center justify-between gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-2 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-lg"
-          >
-            <img
-              src="/icon.svg"
-              alt="srcsx icon"
-              className="w-[18px] md:h-[28px] md:w-[28px]"
-              fetchPriority="high"
-            />
-            معرفی
-          </Link>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.5,
-            delay: calculateAnimationDelay(5),
-          }}
-        >
-          <button
-            onClick={() => {
-              restartTour();
+        <div className="mb-8 h-1 w-full rounded-full bg-myMain bg-opacity-5 dark:bg-black dark:bg-opacity-20"></div>
+
+        <div className="mb-2 grid auto-rows-fr grid-cols-2 gap-4 md:grid-cols-3">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: calculateAnimationDelay(9),
             }}
-            id="guide"
-            className="flex items-center justify-between gap-2 rounded-r-full bg-myMain bg-opacity-5 px-3 py-2 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-lg"
+            id="settings"
           >
-            <QuestionVector
-              width="18"
-              height="18"
-              className="md:h-[28px] md:w-[28px]"
+            <ItemLink
+              title={"تنظیمات"}
+              href={"setup"}
+              icon={<SetupVector width={64} height={64} />}
             />
-            راهنما
-          </button>
-        </motion.div>
-      </div>
+          </motion.div>
 
-      <motion.div
-        className="absolute right-0 top-[30px]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 0.5,
-          delay: calculateAnimationDelay(5),
-        }}
-      >
-        <Link
-          id="settings"
-          href="/setup"
-          className="flex items-center gap-2 rounded-l-full bg-myMain bg-opacity-5 px-3 py-3 pr-4 text-sm font-light text-myBlack text-opacity-70 transition-all hover:bg-opacity-10 hover:text-opacity-100 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:gap-4 md:text-lg"
-        >
-          تنظیمات
-          <SetupVector
-            width="18"
-            height="18"
-            className="md:h-[28px] md:w-[28px]"
-          />
-        </Link>
-      </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: calculateAnimationDelay(10),
+            }}
+            id="about-srcsx"
+          >
+            <ItemLink
+              title={"معرفی"}
+              href={"about-srcsx"}
+              icon={
+                <img
+                  src="/icon.svg"
+                  alt="srcsx icon"
+                  className="w-[64px]"
+                  fetchPriority="high"
+                />
+              }
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: calculateAnimationDelay(11),
+            }}
+          >
+            <button
+              onClick={() => {
+                restartTour();
+              }}
+              id="guide"
+              className={`relative flex h-full min-h-[160px] w-full flex-col items-center justify-center gap-4 rounded-2xl bg-myMain bg-opacity-5 p-6 text-xs text-myBlack transition-all hover:bg-opacity-10 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:min-h-[192px] md:p-8 md:text-base`}
+            >
+              <QuestionVector width="64" height="64" />
+              راهنما
+            </button>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
