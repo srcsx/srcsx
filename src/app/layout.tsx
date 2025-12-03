@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import ProgressBar from "@/components/layout/ProgressBar";
 import SRCSXSimpleNav from "@/components/layout/SRCSXSimpleNavigation";
 import { PageTourRenderer } from "@/components/layout/PageTourRenderer";
+import { Flip, ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "SRCSX - پلتفرم جامع",
@@ -39,13 +40,23 @@ export default function RootLayout({
     <html lang="fa">
       <body
         dir="rtl"
-        className={`bg-white px-4 py-8 pb-28 font-main dark:bg-myBlack md:px-8`}
+        className={`bg-white px-4 py-8 pb-12 font-main dark:bg-myBlack md:px-8`}
       >
         <Suspense>
           {children}
           <ProgressBar />
           <SRCSXSimpleNav />
           <PageTourRenderer />
+          <ToastContainer
+            rtl
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            closeOnClick={false}
+            pauseOnHover={true}
+            draggable={true}
+            transition={Flip}
+          />
         </Suspense>
       </body>
     </html>
