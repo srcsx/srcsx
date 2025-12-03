@@ -226,7 +226,7 @@ export default function UVTermBasedPage() {
                   className="rounded-2xl bg-myMain bg-opacity-5 text-myBlack dark:bg-black dark:bg-opacity-20 dark:text-gray-200"
                 >
                   <button
-                    className="relative flex w-full items-center justify-between gap-4 rounded-2xl bg-myMain bg-opacity-0 p-4 text-xs transition-all hover:bg-opacity-5 md:p-6 md:p-8 md:text-base"
+                    className="relative flex w-full items-center justify-between gap-4 rounded-2xl bg-myMain bg-opacity-0 p-4 text-xs transition-all hover:bg-opacity-5 md:p-6 md:text-base"
                     onClick={() => toggleDropdown(i)}
                   >
                     <div className="flex items-center gap-4">
