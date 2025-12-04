@@ -16,8 +16,10 @@ import { useUvTermBasedStore } from "@/store/uvTermBasedStore";
 import UVTermBasedMainGuideBox from "@/components/pages/uv-term-based/UVTermBasedMainGuideBox";
 import { useRouter } from "next/navigation";
 import { usePageActions } from "@/store/usePageActions";
-import { Course } from "@/generated/prisma/client";
+import { Course as OriginCourse } from "@/generated/prisma/client";
 import { useUserStore } from "@/store/userStore";
+
+type Course = OriginCourse & { oneCoursePerTerm: boolean };
 
 interface ResultType {
   issues: { term: number; message: string }[];
@@ -299,11 +301,14 @@ export default function UVTermBasedPage() {
                                   .map((course, index) => (
                                     <CourseButton
                                       key={index}
-                                      onClick={(course) => addCourse(i, course)}
+                                      onClick={(course) =>
+                                        addCourse(i, course as Course)
+                                      }
                                       course={course}
                                       isSelected={coursesStore.includes(
                                         course.id,
                                       )}
+                                      oneCoursePerTerm={course.oneCoursePerTerm}
                                     />
                                   ))}
                             </div>
@@ -337,7 +342,9 @@ export default function UVTermBasedPage() {
                                   .map((course, index) => (
                                     <CourseButton
                                       key={index}
-                                      onClick={(course) => addCourse(i, course)}
+                                      onClick={(course) =>
+                                        addCourse(i, course as Course)
+                                      }
                                       course={course}
                                       isSelected={coursesStore.includes(
                                         course.id,
@@ -394,9 +401,12 @@ export default function UVTermBasedPage() {
                               {term.courses.map((course, index) => (
                                 <CourseButton
                                   key={index}
-                                  onClick={(course) => addCourse(i, course)}
+                                  onClick={(course) =>
+                                    addCourse(i, course as Course)
+                                  }
                                   course={course}
                                   isSelected={coursesStore.includes(course.id)}
+                                  oneCoursePerTerm={course.oneCoursePerTerm}
                                 />
                               ))}
                             </div>

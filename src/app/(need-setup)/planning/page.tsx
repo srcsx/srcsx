@@ -3,7 +3,7 @@ import PageHeading from "@/components/layout/PageHeading";
 import axiosInstance from "@/utils/connect";
 import { useEffect, useState } from "react";
 import UVTermBasedMainGuideBox from "@/components/pages/uv-term-based/UVTermBasedMainGuideBox";
-import { Course } from "@/generated/prisma/client";
+import { Course as OriginCourse } from "@/generated/prisma/client";
 import { useUserStore } from "@/store/userStore";
 import { usePlanningStore } from "@/store/usePlanningStore";
 import PrimaryInput from "@/components/utils/inputs/PrimaryInput";
@@ -11,6 +11,8 @@ import TrashIcon from "@/assets/icons/TrashIcon";
 import CourseButton from "@/components/pages/planning/CourseButton";
 import PlusIcon from "@/assets/icons/PlusIcon";
 import Modal from "@/components/utils/Modal";
+
+type Course = OriginCourse & { oneCoursePerTerm: boolean };
 
 export default function UVTermBasedPage() {
   // Main states.
@@ -234,7 +236,7 @@ export default function UVTermBasedPage() {
                 </div>
               </div>
 
-              <div className="relative mb-8">
+              <div className="relative mb-4">
                 <button
                   onClick={() => {
                     setTermIndex(i);
@@ -246,7 +248,7 @@ export default function UVTermBasedPage() {
                 </button>
               </div>
 
-              <div className="no-scrollbar h-[400px] space-y-2 overflow-y-scroll">
+              <div className="no-scrollbar h-[400px] space-y-2 overflow-y-scroll pt-4">
                 {term.courses.map((c, index) => (
                   <CourseButton
                     key={index}
