@@ -2,7 +2,6 @@
 import PageHeading from "@/components/layout/PageHeading";
 import axiosInstance from "@/utils/connect";
 import { useEffect, useState } from "react";
-import UVTermBasedMainGuideBox from "@/components/pages/uv-term-based/UVTermBasedMainGuideBox";
 import { Course as OriginCourse } from "@/generated/prisma/client";
 import { useUserStore } from "@/store/userStore";
 import { usePlanningStore } from "@/store/usePlanningStore";
@@ -11,11 +10,13 @@ import TrashIcon from "@/assets/icons/TrashIcon";
 import CourseButton from "@/components/pages/planning/CourseButton";
 import PlusIcon from "@/assets/icons/PlusIcon";
 import Modal from "@/components/utils/Modal";
+import PlanningMainGuideBox from "@/components/pages/planning/PlanningMainGuideBox";
 
 type Course = OriginCourse & { oneCoursePerTerm: boolean };
 
 export default function UVTermBasedPage() {
   // Main states.
+  const [isLoading, setIsLoading] = useState(true);
   const [fetchCourses, setFetchCourses] =
     useState<(Course & { defaultTerm: number })[]>();
 
@@ -26,6 +27,10 @@ export default function UVTermBasedPage() {
     setPassedUnitsStore,
     coursesStore,
     setCoursesStore,
+    showTabestanStore,
+    setShowTabestanStore,
+    showRecommendedStore,
+    setShowRecommendedStore,
   } = usePlanningStore();
 
   useEffect(() => {
@@ -34,8 +39,8 @@ export default function UVTermBasedPage() {
       try {
         const response = await axiosInstance("/uv-term-based/courses", {});
         setFetchCourses(response.data);
-      } finally {
-      }
+        setIsLoading(false);
+      } catch {}
     };
 
     fetchData();
@@ -155,8 +160,6 @@ export default function UVTermBasedPage() {
     return i % 3 === 0;
   };
 
-  const [showRecommended, setShowRecommended] = useState(true);
-  const [showTabestan, setShowTabestan] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [termIndex, setTermIndex] = useState<number>(0);
 
@@ -164,20 +167,20 @@ export default function UVTermBasedPage() {
     <div className="pb-12">
       <PageHeading title="برنامه ریزی تحصیلی" />
 
-      <UVTermBasedMainGuideBox />
+      <PlanningMainGuideBox />
 
       <div className="mb-4 flex flex-wrap gap-2">
         <button
-          onClick={() => setShowRecommended(!showRecommended)}
+          onClick={() => setShowRecommendedStore(!showRecommendedStore)}
           className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${
-            showRecommended
+            showRecommendedStore
               ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
               : "opacity-50"
           }`}
         >
           <div
             className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${
-              showRecommended
+              showRecommendedStore
                 ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
                 : ""
             }`}
@@ -185,16 +188,16 @@ export default function UVTermBasedPage() {
           نمایش پیشنهاد‌ها
         </button>
         <button
-          onClick={() => setShowTabestan(!showTabestan)}
+          onClick={() => setShowTabestanStore(!showTabestanStore)}
           className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${
-            showTabestan
+            showTabestanStore
               ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
               : "opacity-50"
           }`}
         >
           <div
             className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${
-              showTabestan
+              showTabestanStore
                 ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
                 : ""
             }`}
@@ -205,14 +208,14 @@ export default function UVTermBasedPage() {
 
       <div className="no-scrollbar flex snap-y snap-mandatory gap-2 overflow-x-auto scroll-smooth whitespace-nowrap">
         {termsStore.map((term, i) => {
-          if (!showTabestan && isTabestan(i + 1)) {
+          if (!showTabestanStore && isTabestan(i + 1)) {
             return;
           }
 
           return (
             <div
               key={i}
-              className="min-w-[360px] rounded-2xl bg-myMain bg-opacity-5 p-4 text-myBlack dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:min-w-[500px]"
+              className={`min-w-[360px] rounded-2xl bg-myMain bg-opacity-5 p-4 text-myBlack dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:min-w-[500px] ${isLoading ? "animate-pulse opacity-50" : ""}`}
             >
               <div className="mb-8 flex items-center justify-between text-sm">
                 <div className="flex items-center gap-4 rounded-full bg-gray-200 px-4 py-2 font-light dark:bg-black dark:bg-opacity-20">
@@ -260,7 +263,7 @@ export default function UVTermBasedPage() {
                   />
                 ))}
 
-                {showRecommended &&
+                {showRecommendedStore &&
                   fetchCourses &&
                   fetchCourses?.filter(
                     (c) =>

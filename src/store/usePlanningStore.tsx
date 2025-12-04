@@ -24,6 +24,12 @@ interface UvTermBasedStoreType {
   passedUnitsStore: number;
   setPassedUnitsStore: (units: number) => void;
 
+  showTabestanStore: boolean;
+  setShowTabestanStore: (s: boolean) => void;
+
+  showRecommendedStore: boolean;
+  setShowRecommendedStore: (s: boolean) => void;
+
   clearAll: () => void;
 }
 
@@ -34,14 +40,22 @@ export const usePlanningStore = create<UvTermBasedStoreType>()(
         courses: [],
         units: 0,
       })),
+
       coursesStore: [],
       passedUnitsStore: 0,
+
+      showTabestanStore: false,
+      showRecommendedStore: true,
 
       setTermsStore: (data) => set({ termsStore: data }),
 
       setCoursesStore: (data) => set({ coursesStore: data }),
 
       setPassedUnitsStore: (units) => set({ passedUnitsStore: units }),
+
+      setShowTabestanStore: (s) => set({ showTabestanStore: s }),
+
+      setShowRecommendedStore: (s) => set({ showRecommendedStore: s }),
 
       clearAll: () =>
         set({
@@ -51,6 +65,8 @@ export const usePlanningStore = create<UvTermBasedStoreType>()(
           })),
           coursesStore: [],
           passedUnitsStore: 0,
+          showTabestanStore: false,
+          showRecommendedStore: true,
         }),
     }),
     {
