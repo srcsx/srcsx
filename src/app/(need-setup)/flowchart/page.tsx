@@ -8,8 +8,7 @@ import { useUvTermBasedStore } from "@/store/uvTermBasedStore";
 import FlowchartSkletons from "@/components/pages/flowchart/FlowchartSkletons";
 import { Course } from "@/generated/prisma/client";
 import { useUvStore } from "@/store/uvStore";
-import { toPng } from "html-to-image";
-import jsPDF from "jspdf";
+import { flowchartPdfDownloader } from "@/components/pages/flowchart/flowchartPdfDownloader";
 
 type ModifiedCourse = Course & {
   childs?: ModifiedCourse[];
@@ -20,51 +19,6 @@ export default function FlowchartPage() {
   // Main states.
   const [loading, setLoading] = useState(true);
   const [fetchCourses, setFetchCourses] = useState<ModifiedCourse[]>();
-
-  const downloadPDF = async () => {
-    const element = document.getElementById("flowchart-container");
-    if (!element) return;
-
-    // Extra padding around the flowchart for better visual spacing in the PDF
-    const padding = 40;
-
-    // Calculate the final dimensions including padding
-    const width = element.scrollWidth + padding * 2;
-    const height = element.scrollHeight + padding * 2;
-
-    // Store original styles to restore later
-    const originalOverflow = element.style.overflow;
-    const originalPadding = element.style.padding;
-
-    // Temporarily hide scrollbars and apply padding for clean rendering
-    element.style.overflow = "hidden";
-    element.style.padding = `${padding}px`;
-
-    // Render element to PNG with custom width/height
-    const dataUrl = await toPng(element, {
-      cacheBust: true,
-      pixelRatio: 1.5, // Good balance of quality vs file size
-      width,
-      height,
-    });
-
-    // Restore original styles
-    element.style.overflow = originalOverflow;
-    element.style.padding = originalPadding;
-
-    // Create a PDF sized exactly to the rendered flowchart
-    const pdf = new jsPDF({
-      orientation: width > height ? "landscape" : "portrait",
-      unit: "px",
-      format: [width, height],
-    });
-
-    // Insert the PNG into the PDF
-    pdf.addImage(dataUrl, "PNG", 0, 0, width, height);
-
-    // Save the file
-    pdf.save("flowchart.pdf");
-  };
 
   useEffect(() => {
     // Fetch data from api.
@@ -144,7 +98,7 @@ export default function FlowchartPage() {
             </button>
 
             <button
-              onClick={downloadPDF}
+              onClick={() => flowchartPdfDownloader("flowchart-container")}
               className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm opacity-50 transition hover:opacity-100 dark:border-gray-200 dark:text-gray-200 md:px-6`}
             >
               دانلود PDF
