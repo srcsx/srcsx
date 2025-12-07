@@ -12,6 +12,7 @@ import ThemeToggle from "@/components/pages/setup/ThemeToggle";
 import CursorIcon from "@/assets/icons/CursorIcon";
 import Modal from "@/components/utils/Modal";
 import SetupGuideBox from "@/components/pages/setup/SetupGuideBox";
+import { toast } from "react-toastify";
 
 const firstYear = 1396;
 const lastYear = 1404;
@@ -61,6 +62,16 @@ export default function SetupPage() {
   }, [user?.universityId, type]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (nextRoute) {
+      toast.error("اطلاعات خود را وارد کنید", {
+        style: {
+          fontFamily: "Samim",
+        },
+      });
+    }
+  }, [nextRoute]);
 
   return (
     <div>

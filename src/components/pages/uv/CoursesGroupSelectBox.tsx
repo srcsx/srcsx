@@ -81,6 +81,7 @@ export default function CoursesGroupSelectBox({
             course={course}
             isSelected={selectedCourses.includes(course.id)}
             required={group.type === "required"}
+            oneCoursePerTerm={group.oneCoursePerTerm}
           />
         ))}
       </div>

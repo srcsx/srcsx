@@ -1,6 +1,8 @@
-import { Course } from "@/generated/prisma/client";
+import { Course as OriginCourse } from "@/generated/prisma/client";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+
+type Course = OriginCourse & { oneCoursePerTerm: boolean };
 
 interface TermBoxType {
   courses: Course[];

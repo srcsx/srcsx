@@ -132,6 +132,8 @@ export const getRawCourses = async (
     ...(setRequired && {
       required:
         course.courseGroups?.some((g: any) => g.type === "required") ?? false,
+      oneCoursePerTerm:
+        course.courseGroups?.some((g: any) => g.oneCoursePerTerm) ?? false,
     }),
 
     ...(setResources && {
