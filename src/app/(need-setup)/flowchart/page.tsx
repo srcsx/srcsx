@@ -8,6 +8,7 @@ import { useUvTermBasedStore } from "@/store/uvTermBasedStore";
 import FlowchartSkletons from "@/components/pages/flowchart/FlowchartSkletons";
 import { Course } from "@/generated/prisma/client";
 import { useUvStore } from "@/store/uvStore";
+import { flowchartPdfDownloader } from "@/components/pages/flowchart/flowchartPdfDownloader";
 
 type ModifiedCourse = Course & {
   childs?: ModifiedCourse[];
@@ -94,6 +95,13 @@ export default function FlowchartPage() {
                 }`}
               ></div>
               فیلتر درس های پاس شده بر واحد درسی
+            </button>
+
+            <button
+              onClick={() => flowchartPdfDownloader("flowchart-container")}
+              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm opacity-50 transition hover:opacity-100 dark:border-gray-200 dark:text-gray-200 md:px-6`}
+            >
+              دانلود PDF
             </button>
           </div>
 
