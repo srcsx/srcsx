@@ -8,7 +8,7 @@ import { useUvTermBasedStore } from "@/store/uvTermBasedStore";
 import FlowchartSkletons from "@/components/pages/flowchart/FlowchartSkletons";
 import { Course } from "@/generated/prisma/client";
 import { useUvStore } from "@/store/uvStore";
-import { flowchartPdfDownloader } from "@/components/pages/flowchart/flowchartPdfDownloader";
+import { flowchartPdfDownloader } from "@/components/pages/flowchart/FlowchartPdfDownloader";
 
 type ModifiedCourse = Course & {
   childs?: ModifiedCourse[];
