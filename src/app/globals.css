@@ -74,3 +74,34 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+
+.success-toast,
+.error-toast {
+  font-family: "peyda";
+  color: #e0e0e0;
+  box-shadow:
+    0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  overflow: hidden;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px)!important;
+  /* -webkit-backdrop-filter: blur(50px); */
+  z-index: 1000;
+}
+
+.success-toast .Toastify__progress-bar {
+  background: linear-gradient(90deg, #6bff7f, #47ff4a);
+}
+
+.error-toast .Toastify__progress-bar {
+  background: linear-gradient(90deg, #ff6b6b, #ff4757);
+}
+
+.Toastify__progress-bar--wrp {
+  height: 2px;
+}

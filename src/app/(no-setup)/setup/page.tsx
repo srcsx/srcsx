@@ -15,6 +15,7 @@ import SelectHeading from "@/ui/layout/SelectHeading";
 import AnimatedDiv from "@/ui/layout/AnimatedDiv";
 import Modal from "@/ui/utils/Modal";
 import ScrollableSelectBox from "@/ui/utils/inputs/ScrollableSelectBox";
+import { usePageActions } from "@/store/usePageActions";
 
 const firstYear = 1396;
 const lastYear = 1404;
@@ -71,9 +72,24 @@ export default function SetupPage() {
         style: {
           fontFamily: "Samim",
         },
+        className: "error-toast",
       });
     }
   }, [nextRoute]);
+
+  const { setActions, clearActions } = usePageActions();
+
+  useEffect(() => {
+    if (user?.majorId && user.year && nextRoute) {
+      setActions({
+        onNext: () => {
+          window.location.href = nextRoute;
+        },
+      });
+    }
+
+    return () => clearActions();
+  }, [setActions, clearActions, nextRoute, user?.majorId && user.year]);
 
   return (
     <div>
@@ -200,16 +216,6 @@ export default function SetupPage() {
           <SelectHeading title="انتخاب تم" />
           <ThemeToggle />
         </AnimatedDiv>
-
-        {user?.majorId && user.year && nextRoute && (
-          <a
-            href={nextRoute}
-            className={`darK:text-gray-200 relative flex w-full items-center justify-between gap-4 rounded-2xl bg-myMain bg-opacity-5 p-6 text-sm text-myBlack transition-all hover:bg-opacity-10 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:p-8 md:text-base`}
-          >
-            ادامه
-            <ArrowLeftIcon />
-          </a>
-        )}
       </div>
     </div>
   );
