@@ -6,9 +6,9 @@ export default function ScrollableSelectBox({
   selectedItem,
   onChange,
 }: {
-  items: { value: string | number; label: string }[];
+  items: { value: string | number | null; label: string }[];
   selectedItem?: string | number | null;
-  onChange: (n: { value: string | number; label: string }) => void;
+  onChange: (n: { value: string | number | null; label: string }) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedRef = useRef<HTMLButtonElement | null>(null);

@@ -191,7 +191,7 @@ export default function SetupPage() {
               ).map((v) => {
                 return { label: v.toString(), value: v };
               })}
-              onChange={(n) => updateUser({ year: +n.value })}
+              onChange={(n) => updateUser({ year: +n.value! })}
             />
           </AnimatedDiv>
         </div>

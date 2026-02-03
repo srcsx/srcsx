@@ -54,3 +54,5 @@ src/generated
 
 .test
 .scripts
+
+src/app/(management)

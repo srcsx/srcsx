@@ -11,7 +11,7 @@ export default function ToggleButton({
 }) {
   return (
     <AnimatedDiv
-      className={`relative flex items-center justify-center gap-2 rounded-2xl border border-myBlack border-opacity-30 px-3 py-2 text-xs opacity-50 dark:border-white/10 dark:text-gray-200 md:px-6`}
+      className={`relative flex min-w-[200px] items-center justify-center gap-2 rounded-2xl border border-myBlack border-opacity-30 px-3 py-2 text-xs opacity-50 dark:border-white/10 dark:text-gray-200 md:px-6`}
     >
       <button
         onClick={onClick}

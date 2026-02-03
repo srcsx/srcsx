@@ -29,8 +29,9 @@ model Major {
   name              String
   verificationLevel Int         @default(0) @db.SmallInt
 
-  university University @relation(fields: [universityId], references: [id], onDelete: Cascade)
-  syllabi    Syllabus[]
+  university     University      @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  syllabi        Syllabus[]
+  offeredCourses OfferedCourse[]
 }
 
 model Syllabus {
@@ -109,6 +110,7 @@ model Course {
 
   courseReference   CourseReference? @relation(fields: [courseReferenceId], references: [id])
   courseReferenceId Int?
+  offeredCourses    OfferedCourse[]
 }
 
 model CourseResource {
@@ -187,4 +189,42 @@ model TermCoursesSyllabus {
 
   courses  Course[]
   syllabus Syllabus @relation(fields: [syllabusId], references: [id], onDelete: Cascade)
+}
+
+model OfferedCourse {
+  id      Int   @id @default(autoincrement())
+  majorId Int
+  major   Major @relation(fields: [majorId], references: [id], onDelete: Cascade)
+
+  term Int
+
+  code     String
+  eraeCode String @unique
+
+  courseId Int?
+  course   Course? @relation(fields: [courseId], references: [id])
+
+  isCourseMissing Boolean @default(false)
+
+  name String
+  type String
+
+  className String?
+
+  unit     Int @db.SmallInt
+  theoUnit Int @db.SmallInt
+  pracUnit Int @db.SmallInt
+
+  dayOfWeek String?
+  startTime String?
+  endTime   String?
+
+  examDate      String?
+  examStartTime String?
+  examEndTime   String?
+
+  teacher  String
+  capacity Int
+
+  createdAt DateTime @default(now())
 }
