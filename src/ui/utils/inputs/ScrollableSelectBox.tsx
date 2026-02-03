@@ -6,7 +6,7 @@ export default function ScrollableSelectBox({
   selectedItem,
   onChange,
 }: {
-  items: { value: string | number | null; label: string }[];
+  items: { value: string | number | null; label: string; disabled?: boolean }[];
   selectedItem?: string | number | null;
   onChange: (n: { value: string | number | null; label: string }) => void;
 }) {
@@ -51,9 +51,10 @@ export default function ScrollableSelectBox({
           {items.map((item) => (
             <button
               key={item.value}
+              disabled={item.disabled}
               ref={selectedItem === item.value ? selectedRef : null}
               onClick={() => onChange(item)}
-              className={`relative flex items-center justify-center rounded-2xl border border-myBlack border-opacity-30 px-2 py-2 text-sm font-light dark:border-gray-200/10 dark:text-gray-200 md:px-4 md:text-base ${
+              className={`relative flex items-center justify-center rounded-2xl border border-myBlack border-opacity-30 px-2 py-2 text-sm font-light disabled:line-through disabled:opacity-30 dark:border-gray-200/10 dark:text-gray-200 md:px-4 md:text-base ${
                 item.value === selectedItem
                   ? "border-[#0E465E]/10 bg-gradient-to-r from-myBlack/5 to-[#0E465E]/5 text-myBlack opacity-100 dark:from-white/10 dark:to-gray-200/10"
                   : "opacity-50"

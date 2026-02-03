@@ -18,7 +18,7 @@ export default function ToggleButton({
         className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors duration-300 ${isSelected ? "bg-myMain dark:bg-gray-300" : "bg-gray-600 opacity-40 dark:opacity-60"} `}
       >
         <span
-          className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-md transition-transform duration-300 ${isSelected ? "-translate-x-[22px]" : "-translate-x-[2px]"} `}
+          className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-md transition-transform duration-300 ${!isSelected ? "-translate-x-[22px]" : "-translate-x-[2px]"} `}
         />
       </button>
 

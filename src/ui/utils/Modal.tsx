@@ -25,7 +25,7 @@ export default function Modal({
           onClick={onClose}
         >
           <motion.div
-            className="relative mx-4 w-full max-w-lg rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800"
+            className="relative mx-4 w-full max-w-lg rounded-2xl bg-white p-6 shadow-lg backdrop-blur-3xl dark:bg-white/5"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}

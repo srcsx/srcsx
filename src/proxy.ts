@@ -8,6 +8,7 @@ const needSetupUrls = [
   "/api/flowchart",
   "/api/files",
   "/api/courses-resources",
+  "/api/offered-courses",
 ];
 
 export const config = {
