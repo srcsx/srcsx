@@ -51,3 +51,6 @@ next-env.d.ts
 src/generated
 
 .vscode/
+
+.test
+.scripts

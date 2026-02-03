@@ -3,8 +3,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import Cookies from "js-cookie";
 import type { PersistStorage } from "zustand/middleware";
-import { useUvStore } from "./uvStore";
-import { useUvTermBasedStore } from "./uvTermBasedStore";
+import { useUvStore } from "../features/uv/store/useUvStore";
+import { useUvTermBasedStore } from "../features/uv-term-based/store/useUvTermBasedStore";
 
 export interface User {
   majorId?: number;

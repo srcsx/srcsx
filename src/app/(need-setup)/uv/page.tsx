@@ -1,14 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import SelectCourseStage from "@/components/pages/uv/stages/SelectCourseStage";
-import FinalResultStage from "@/components/pages/uv/stages/FinalResultStage";
+import SelectCourseStage from "@/features/uv/ui/Stages/SelectCourseStage";
+import FinalResultStage from "@/features/uv/ui/Stages/FinalResultStage";
 import { useRouter, useSearchParams } from "next/navigation";
-import PageHeading from "@/components/layout/PageHeading";
 import { useUserStore } from "@/store/userStore";
 import { UV_STAGE_TYPE } from "@/types/uv";
-import { useUvStore } from "@/store/uvStore";
+import { useUvStore } from "@/features/uv/store/useUvStore";
 import { usePageActions } from "@/store/usePageActions";
 import { Course } from "@/generated/prisma/client";
+import UVMainGuideBox from "@/features/uv/ui/UVMainGuideBox";
+import PageHeading from "@/ui/layout/PageHeading";
 
 export default function UVPage() {
   // Set search params.
@@ -131,7 +132,7 @@ export default function UVPage() {
 
   return (
     <div>
-      <PageHeading title="بررسی واحد کلی" />
+      <PageHeading title="بررسی واحد کلی" guideBox={<UVMainGuideBox />} />
 
       {stage === "SELECT_COURSE" && (
         <SelectCourseStage

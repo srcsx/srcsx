@@ -1,5 +1,5 @@
 import { DegreeLevel } from "@/generated/prisma/enums";
-import getMajors from "@/services/majors/getMajors";
+import getMajors from "@/features/majors/services/getMajors";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {

@@ -1,14 +1,15 @@
 "use client";
-import PageHeading from "@/components/layout/PageHeading";
 import axiosInstance from "@/utils/connect";
 import { useEffect, useState } from "react";
-import FlowchartNode from "@/components/pages/flowchart/FlowchartNode";
-import FlowchartMainGuideBox from "@/components/pages/flowchart/FlowchartMainGuideBox";
-import { useUvTermBasedStore } from "@/store/uvTermBasedStore";
-import FlowchartSkletons from "@/components/pages/flowchart/FlowchartSkletons";
+import FlowchartNode from "@/features/flowchart/ui/FlowchartNode";
+import FlowchartMainGuideBox from "@/features/flowchart/ui/FlowchartMainGuideBox";
+import { useUvTermBasedStore } from "@/features/uv-term-based/store/useUvTermBasedStore";
 import { Course } from "@/generated/prisma/client";
-import { useUvStore } from "@/store/uvStore";
-import { flowchartPdfDownloader } from "@/components/pages/flowchart/FlowchartPdfDownloader";
+import { useUvStore } from "@/features/uv/store/useUvStore";
+import Actions from "@/features/flowchart/ui/Actions";
+import FlowchartSkletons from "@/features/flowchart/ui/FlowchartSkletons";
+import AnimatedDiv from "@/ui/layout/AnimatedDiv";
+import PageHeading from "@/ui/layout/PageHeading";
 
 type ModifiedCourse = Course & {
   childs?: ModifiedCourse[];
@@ -45,65 +46,16 @@ export default function FlowchartPage() {
 
   return (
     <div className="">
-      <PageHeading title="فلوچارت درسی" />
-
-      <FlowchartMainGuideBox />
+      <PageHeading title="فلوچارت درسی" guideBox={<FlowchartMainGuideBox />} />
 
       {loading && <FlowchartSkletons />}
 
       {!loading && (
-        <div>
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() =>
-                showPassedCourses === "uv-term-based"
-                  ? setShowPassedCourses(null)
-                  : setShowPassedCourses("uv-term-based")
-              }
-              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${
-                showPassedCourses === "uv-term-based"
-                  ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
-                  : "opacity-50"
-              }`}
-            >
-              <div
-                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${
-                  showPassedCourses === "uv-term-based"
-                    ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
-                    : ""
-                }`}
-              ></div>
-              فیلتر درس های پاس شده بر اساس واحد درسی (ترم)
-            </button>
-            <button
-              onClick={() =>
-                showPassedCourses === "uv"
-                  ? setShowPassedCourses(null)
-                  : setShowPassedCourses("uv")
-              }
-              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm dark:border-gray-200 dark:text-gray-200 md:px-6 ${
-                showPassedCourses === "uv"
-                  ? "border-[#0E465E] border-opacity-50 bg-gradient-to-r from-myBlack to-[#0E465E] bg-clip-text text-transparent opacity-100 dark:border-gray-200 dark:from-white dark:to-gray-200"
-                  : "opacity-50"
-              }`}
-            >
-              <div
-                className={`ml-2 h-4 w-4 rounded-md border border-myBlack transition-all dark:border-gray-200 ${
-                  showPassedCourses === "uv"
-                    ? "bg-gradient-to-bl from-myMain to-myBlack dark:from-white dark:to-gray-200"
-                    : ""
-                }`}
-              ></div>
-              فیلتر درس های پاس شده بر واحد درسی
-            </button>
-
-            <button
-              onClick={() => flowchartPdfDownloader("flowchart-container")}
-              className={`relative flex items-center justify-center rounded-xl border border-myBlack border-opacity-30 px-3 py-2 text-sm opacity-50 transition hover:opacity-100 dark:border-gray-200 dark:text-gray-200 md:px-6`}
-            >
-              دانلود PDF
-            </button>
-          </div>
+        <AnimatedDiv>
+          <Actions
+            setShowPassedCourses={setShowPassedCourses}
+            showPassedCourses={showPassedCourses}
+          />
 
           <div
             id="flowchart-container"
@@ -137,7 +89,7 @@ export default function FlowchartPage() {
                 ))}
             </div>
           </div>
-        </div>
+        </AnimatedDiv>
       )}
     </div>
   );

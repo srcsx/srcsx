@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getRawCourses } from "@/services/courses/getCourses";
+import { getRawCourses } from "@/features/courses/services/getCourses";
 
 export async function GET() {
   try {

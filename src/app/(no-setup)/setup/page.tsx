@@ -1,18 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axiosInstance from "@/utils/connect";
-import SelectHeading from "@/components/layout/SelectHeading";
 import { useUserStore } from "@/store/userStore";
-import PageHeading from "@/components/layout/PageHeading";
 import { useSearchParams } from "next/navigation";
-import SelectButton from "@/components/pages/setup/SelectButton";
+import SelectButton from "@/features/setup/ui/SelectButton";
 import ArrowLeftIcon from "@/assets/icons/ArrowLeftIcon";
 import { Major, University } from "@/generated/prisma/client";
-import ThemeToggle from "@/components/pages/setup/ThemeToggle";
+import ThemeToggle from "@/features/setup/ui/ThemeToggle";
 import CursorIcon from "@/assets/icons/CursorIcon";
-import Modal from "@/components/utils/Modal";
-import SetupGuideBox from "@/components/pages/setup/SetupGuideBox";
+import SetupGuideBox from "@/features/setup/ui/SetupGuideBox";
 import { toast } from "react-toastify";
+import PageHeading from "@/ui/layout/PageHeading";
+import SelectHeading from "@/ui/layout/SelectHeading";
+import AnimatedDiv from "@/ui/layout/AnimatedDiv";
+import Modal from "@/ui/utils/Modal";
+import ScrollableSelectBox from "@/ui/utils/inputs/ScrollableSelectBox";
 
 const firstYear = 1396;
 const lastYear = 1404;
@@ -75,14 +77,12 @@ export default function SetupPage() {
 
   return (
     <div>
-      <PageHeading title="تنظیمات" />
-
-      <SetupGuideBox />
+      <PageHeading title="تنظیمات" guideBox={<SetupGuideBox />} />
 
       <div className="mb-8">
         <div className="mb-8">
           <SelectHeading title="انتخاب مقطع" />
-          <div className="flex gap-2 overflow-x-auto scroll-smooth whitespace-nowrap">
+          <AnimatedDiv className="flex gap-2 overflow-x-auto scroll-smooth whitespace-nowrap">
             {[
               { name: "bachelor", display_name: "کارشناسی" },
               { name: "master", display_name: "کارشناسی ارشد" },
@@ -95,7 +95,7 @@ export default function SetupPage() {
                 onClick={() => setType(t.name)}
               />
             ))}
-          </div>
+          </AnimatedDiv>
         </div>
 
         <div className="mb-8">
@@ -105,7 +105,7 @@ export default function SetupPage() {
               <div className="skleton-design h-[50px] w-[150]"></div>
             </div>
           ) : (
-            <div className="flex gap-2 overflow-x-auto scroll-smooth whitespace-nowrap">
+            <AnimatedDiv className="flex gap-2 overflow-x-auto scroll-smooth whitespace-nowrap">
               {universities?.map((u) => (
                 <SelectButton
                   key={u.id}
@@ -114,7 +114,7 @@ export default function SetupPage() {
                   onClick={() => updateUser({ universityId: u.id })}
                 />
               ))}
-            </div>
+            </AnimatedDiv>
           )}
         </div>
 
@@ -127,7 +127,7 @@ export default function SetupPage() {
               </div>
             ) : (
               <div>
-                <div className="mb-4 flex gap-2 overflow-visible scroll-smooth whitespace-nowrap">
+                <AnimatedDiv className="mb-4 flex gap-2 overflow-visible scroll-smooth whitespace-nowrap">
                   {majors?.map((major) => (
                     <SelectButton
                       key={major.id}
@@ -143,7 +143,7 @@ export default function SetupPage() {
                       }
                     />
                   ))}
-                </div>
+                </AnimatedDiv>
 
                 <button
                   className="inline-flex items-center rounded-lg bg-gray-200 px-2 py-2 text-xs font-light text-myBlack opacity-70 hover:opacity-100"
@@ -182,25 +182,24 @@ export default function SetupPage() {
 
         <div className="mb-8">
           <SelectHeading title="انتخاب سال ورود" />
-          <div className="flex flex-wrap gap-2">
-            {Array.from(
-              { length: lastYear - firstYear + 1 },
-              (_, i) => firstYear + i,
-            ).map((year) => (
-              <SelectButton
-                key={year}
-                title={year.toString()}
-                isSelected={user?.year === year}
-                onClick={() => updateUser({ year })}
-              />
-            ))}
-          </div>
+          <AnimatedDiv className="overflow-hidden">
+            <ScrollableSelectBox
+              selectedItem={user?.year}
+              items={Array.from(
+                { length: lastYear - firstYear + 1 },
+                (_, i) => firstYear + i,
+              ).map((v) => {
+                return { label: v.toString(), value: v };
+              })}
+              onChange={(n) => updateUser({ year: +n.value })}
+            />
+          </AnimatedDiv>
         </div>
 
-        <div className="mb-8">
+        <AnimatedDiv className="mb-8">
           <SelectHeading title="انتخاب تم" />
           <ThemeToggle />
-        </div>
+        </AnimatedDiv>
 
         {user?.majorId && user.year && nextRoute && (
           <a

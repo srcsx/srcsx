@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { checkCourses } from "@/services/uv/checkCourses";
-import { getCoursesByGroups } from "@/services/courses/getCourses";
+import { checkCourses } from "@/features/uv/services/checkCourses";
+import { getCoursesByGroups } from "@/features/courses/services/getCourses";
 
 interface ResultBody {
   courses: number[];

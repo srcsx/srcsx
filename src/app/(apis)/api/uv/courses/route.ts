@@ -1,4 +1,4 @@
-import { getCoursesByGroups } from "@/services/courses/getCourses";
+import { getCoursesByGroups } from "@/features/courses/services/getCourses";
 import { NextResponse } from "next/server";
 
 export async function GET() {

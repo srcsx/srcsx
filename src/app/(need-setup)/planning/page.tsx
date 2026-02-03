@@ -1,16 +1,16 @@
 "use client";
-import PageHeading from "@/components/layout/PageHeading";
 import axiosInstance from "@/utils/connect";
 import { useEffect, useState } from "react";
 import { Course as OriginCourse } from "@/generated/prisma/client";
 import { useUserStore } from "@/store/userStore";
 import { usePlanningStore } from "@/store/usePlanningStore";
-import PrimaryInput from "@/components/utils/inputs/PrimaryInput";
 import TrashIcon from "@/assets/icons/TrashIcon";
-import CourseButton from "@/components/pages/planning/CourseButton";
+import CourseButton from "@/features/planning/ui/CourseButton";
 import PlusIcon from "@/assets/icons/PlusIcon";
-import Modal from "@/components/utils/Modal";
-import PlanningMainGuideBox from "@/components/pages/planning/PlanningMainGuideBox";
+import PlanningMainGuideBox from "@/features/planning/ui/PlanningMainGuideBox";
+import PageHeading from "@/ui/layout/PageHeading";
+import Modal from "@/ui/utils/Modal";
+import PrimaryInput from "@/ui/utils/inputs/PrimaryInput";
 
 type Course = OriginCourse & { oneCoursePerTerm: boolean };
 
@@ -59,19 +59,19 @@ export default function UVTermBasedPage() {
   // Handle search.
   const [searchValue, setSearchValue] = useState("");
   const [searchData, setSearchData] = useState<Course[]>([]);
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchData([]);
-    setSearchValue(e.target.value);
+  const handleSearch = (newValue: string) => {
+    setSearchValue(newValue);
 
     if (!fetchCourses) {
       return;
     }
 
-    if (e.target.value === "") {
+    if (newValue === "") {
+      setSearchData([]);
       return;
     }
 
-    setSearchData(fetchCourses.filter((c) => c.name.includes(e.target.value)));
+    setSearchData(fetchCourses.filter((c) => c.name.includes(newValue)));
   };
 
   // Handle courses.
@@ -320,7 +320,7 @@ export default function UVTermBasedPage() {
           <div className="relative mb-8">
             <PrimaryInput
               type="text"
-              onChange={handleSearch}
+              onChange={(n) => handleSearch(n)}
               placeholder="جستجو درس..."
               value={searchValue}
             />

@@ -1,4 +1,4 @@
-import getUniversities from "@/services/universities/getUniversities";
+import getUniversities from "@/features/universities/services/getUniversities";
 import { NextResponse } from "next/server";
 
 export async function GET() {

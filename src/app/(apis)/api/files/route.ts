@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getUserData } from "@/utils/userData";
-import { getFiles } from "@/services/files/getFiles";
+import { getFiles } from "@/features/files/services/getFiles";
 
 export async function GET() {
   try {

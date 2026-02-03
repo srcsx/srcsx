@@ -3,8 +3,11 @@
 import { useCallback, useEffect } from "react";
 import { useTourStore } from "@/store/useTourStore";
 import type { DriveStep } from "driver.js";
+import { usePathname } from "next/navigation";
 
 export function useTour(name: string, steps: DriveStep[]) {
+  const pathname = usePathname();
+
   const { seenTours, hydrated } = useTourStore();
 
   const startTour = useCallback(
@@ -18,6 +21,8 @@ export function useTour(name: string, steps: DriveStep[]) {
   );
 
   useEffect(() => {
+    if (pathname !== name) return;
+
     startTour();
   }, [startTour]);
 

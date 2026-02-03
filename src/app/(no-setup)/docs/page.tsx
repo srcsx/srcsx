@@ -1,10 +1,10 @@
 "use client";
-import PageHeading from "@/components/layout/PageHeading";
 import { usePageActions } from "@/store/usePageActions";
 import axiosInstance from "@/utils/connect";
 import { Doc, DocSection } from "@/generated/prisma/client";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import PageHeading from "@/ui/layout/PageHeading";
+import AnimatedDiv from "@/ui/layout/AnimatedDiv";
 
 export default function DocsPage() {
   const calculateAnimationDelay = (i: number) => {
@@ -49,15 +49,7 @@ export default function DocsPage() {
 
           <div className="mb-2 flex flex-wrap items-stretch justify-center gap-2 md:justify-start">
             {docs.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: calculateAnimationDelay(i + 1),
-                }}
-              >
+              <AnimatedDiv>
                 <button
                   onClick={() => setSelectedDoc(item)}
                   className={`relative flex h-full min-w-[168px] items-center justify-center gap-4 rounded-2xl bg-myMain bg-opacity-5 p-6 text-xs text-myBlack transition-all hover:bg-opacity-10 disabled:opacity-50 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:min-w-[262px] md:p-8 md:text-base`}
@@ -66,20 +58,14 @@ export default function DocsPage() {
 
                   {item.name}
                 </button>
-              </motion.div>
+              </AnimatedDiv>
             ))}
           </div>
         </>
       )}
 
       {selectedDoc && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-          }}
-        >
+        <AnimatedDiv>
           <div>
             <PageHeading title={selectedDoc.name} />
 
@@ -99,7 +85,7 @@ export default function DocsPage() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </AnimatedDiv>
       )}
     </div>
   );

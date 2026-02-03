@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { checkCourses } from "@/services/uv/checkCourses";
+import { checkCourses } from "@/features/uv/services/checkCourses";
 import {
   getCoursesByGroups,
   getRawCourses,
-} from "@/services/courses/getCourses";
-import { checkTermBased } from "@/services/uvTermBased/checkTermBased";
+} from "@/features/courses/services/getCourses";
+import { checkTermBased } from "@/features/uv-term-based/services/checkTermBased";
 
 export async function POST(req: Request) {
   try {

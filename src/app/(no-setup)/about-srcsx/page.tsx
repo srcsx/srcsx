@@ -1,23 +1,15 @@
 "use client";
-import PageHeading from "@/components/layout/PageHeading";
-import { motion } from "framer-motion";
+import AnimatedDiv from "@/ui/layout/AnimatedDiv";
+import PageHeading from "@/ui/layout/PageHeading";
 
 export default function AboutPage() {
   return (
     <div>
-      <PageHeading title="درباره" />
+      <PageHeading title="درباره SRCSX" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.5,
-        }}
-      >
-        <div
-          className={`relative h-full items-center justify-center gap-4 rounded-2xl bg-myMain bg-opacity-5 p-6 text-justify text-sm font-light text-myBlack transition-all hover:bg-opacity-10 disabled:opacity-50 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:p-8`}
-        >
-          <div className="mb-8">
+      <AnimatedDiv>
+        <div className="relative h-full rounded-2xl bg-gray-50 p-6 text-sm font-light text-myBlack transition-colors dark:bg-white/5 dark:text-gray-200 md:p-8">
+          <div className="mb-10 text-justify leading-7">
             اپ SRCSX یه ابزار جمع‌وجوره برای دانشجوها که باهاش می‌تونی چارت و
             فلوچارت رشته‌تو ببینی، پیش‌نیازا رو چک کنی، برنامه‌ریزی درسی بچینی و
             جلوی تداخل‌ها رو بگیری. علاوه بر این، بخش‌های منابع و یادگیری هم
@@ -30,34 +22,39 @@ export default function AboutPage() {
             طریق تلگرام خبر بدید. خوشحال می‌شیم کمک‌ کنید بهترش کنیم.
           </div>
 
-          <div className="-mx-6 mb-8 bg-myBlack bg-opacity-5 px-6 py-2 text-sm font-light text-myBlack dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:-mx-8 md:px-8">
-            <span className="font-bold">توجه کنید، </span>این اپلیکیشن تلاش
-            می‌کنه سرویس‌ها رو با کمترین خطا ارائه بده، اما به‌خاطر تغییرات
-            احتمالی در قوانین آموزشی، ممکنه بعضی بخش‌ها گاهی دچار مشکل بشن.
+          <div className="-mx-6 mb-10 border-r-2 border-myMain/40 bg-myBlack/5 px-6 py-3 text-sm leading-6 dark:border-myMain/30 dark:bg-black/40 md:-mx-8 md:px-8">
+            <span className="font-medium">توجه:</span> این اپلیکیشن تلاش می‌کنه
+            سرویس‌ها رو با کمترین خطا ارائه بده، اما به‌خاطر تغییرات احتمالی در
+            قوانین آموزشی، ممکنه بعضی بخش‌ها گاهی دچار مشکل بشن.
           </div>
 
-          <hr className="mb-8 opacity-80" />
+          <hr className="mb-8 border-myBlack/10 dark:border-white/10" />
 
-          <div className="mb-4 flex justify-between">
-            <div>گیتهاب:</div>
-
-            <div className="font-bold opacity-50">
-              <a href="https://github.com/srcsx/srcsx" target="_blank">
-                https://github.com/srcsx/srcsx
+          <div className="space-y-4 text-sm">
+            <div className="flex items-center justify-between gap-4">
+              <span className="opacity-70">گیتهاب</span>
+              <a
+                href="https://github.com/srcsx/srcsx"
+                target="_blank"
+                className="font-medium opacity-60 transition hover:underline hover:opacity-100"
+              >
+                github.com/srcsx/srcsx
               </a>
             </div>
-          </div>
-          <div className="flex justify-between">
-            <div>تلگرام:</div>
 
-            <div className="font-bold opacity-50">
-              <a href="https://t.me/srcsx" target="_blank">
-                https://t.me/srcsx
+            <div className="flex items-center justify-between gap-4">
+              <span className="opacity-70">تلگرام</span>
+              <a
+                href="https://t.me/srcsx"
+                target="_blank"
+                className="font-medium opacity-60 transition hover:underline hover:opacity-100"
+              >
+                t.me/srcsx
               </a>
             </div>
           </div>
         </div>
-      </motion.div>
+      </AnimatedDiv>
     </div>
   );
 }

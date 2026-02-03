@@ -1,4 +1,4 @@
-import { getDocs } from "@/services/docs/getDocs";
+import { getDocs } from "@/features/docs/services/getDocs";
 import { NextResponse } from "next/server";
 
 export async function GET() {

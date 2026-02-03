@@ -1,16 +1,17 @@
 "use client";
 import TrashIcon from "@/assets/icons/TrashIcon";
-import PrimaryInput from "@/components/utils/inputs/PrimaryInput";
-import PageHeading from "@/components/layout/PageHeading";
-import CourseButton from "@/components/pages/uv/CourseButton";
+import CourseButton from "@/features/uv/ui/CourseButton";
 import axiosInstance from "@/utils/connect";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import CoursesCodesGuideBox from "@/components/pages/courses-codes/CoursesCodesGuideBox";
-import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import CoursesCodesGuideBox from "@/features/courses-codes/ui/CoursesCodesGuideBox";
 import { CopyIcon } from "@/assets/icons/CopyIcon";
-import CourseCodesSkletons from "@/components/pages/courses-codes/CourseCodesSkletons";
+import CourseCodesSkletons from "@/features/courses-codes/ui/CourseCodesSkletons";
 import { Course } from "@/generated/prisma/client";
+import PageHeading from "@/ui/layout/PageHeading";
+import PrimaryInput from "@/ui/utils/inputs/PrimaryInput";
+import AnimatedDiv from "@/ui/layout/AnimatedDiv";
+import PrimaryButton from "@/ui/utils/buttons/PrimaryButton";
 
 export default function CoursesCodesPage() {
   // Main states.
@@ -34,19 +35,19 @@ export default function CoursesCodesPage() {
   // Handle search.
   const [searchValue, setSearchValue] = useState("");
   const [searchData, setSearchData] = useState<Course[]>([]);
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (newValue: string) => {
     setSearchData([]);
-    setSearchValue(e.target.value);
+    setSearchValue(newValue);
 
     if (!fetchCourses) {
       return;
     }
 
-    if (e.target.value === "") {
+    if (newValue === "") {
       return;
     }
 
-    setSearchData(fetchCourses.filter((c) => c.name.includes(e.target.value)));
+    setSearchData(fetchCourses.filter((c) => c.name.includes(newValue)));
   };
 
   const [selectedCourses, setSelectedCourses] = useState<Course[]>([]);
@@ -84,9 +85,7 @@ export default function CoursesCodesPage() {
 
   return (
     <div className="pb-12">
-      <PageHeading title="کد درس ها" />
-
-      <CoursesCodesGuideBox />
+      <PageHeading title="کد درس ها" guideBox={<CoursesCodesGuideBox />} />
 
       {loading && <CourseCodesSkletons />}
 
@@ -103,21 +102,10 @@ export default function CoursesCodesPage() {
               <div className="relative mb-8">
                 <PrimaryInput
                   type="text"
-                  onChange={handleSearch}
+                  onChange={(newValue) => handleSearch(newValue)}
                   value={searchValue}
                   placeholder="جستجو درس..."
                 />
-                {searchValue.length > 0 && (
-                  <button
-                    onClick={() => {
-                      setSearchData([]);
-                      setSearchValue("");
-                    }}
-                    className="absolute left-2 top-2 rounded-lg bg-red-100 px-2 py-2 text-sm font-light text-red-600"
-                  >
-                    <TrashIcon />
-                  </button>
-                )}
               </div>
 
               {searchData?.filter((course) => !selectedCourses.includes(course))
@@ -143,45 +131,49 @@ export default function CoursesCodesPage() {
 
               {selectedCourses.length > 0 && (
                 <div className="mt-8">
-                  <div className="mb-4 text-sm font-bold text-myBlack dark:text-gray-200">
+                  <hr className="mb-8 border-myBlack/10 dark:border-white/10" />
+
+                  <div className="mb-4 text-sm font-light text-myBlack dark:text-gray-200">
                     درس های انتخاب شده:{" "}
                   </div>
                   <div className="mb-4 flex flex-col gap-2">
-                    {selectedCourses.map((course, index) => (
-                      <div
-                        key={index}
-                        className="flex justify-between rounded-2xl bg-gray-50 px-4 py-3 font-light text-myBlack dark:bg-black dark:bg-opacity-20 dark:text-gray-200"
-                      >
-                        <div>{course.name}</div>
-                        <div className="flex items-center gap-2">
-                          <div>{course.amozeshyarCode ?? "-"}</div>
+                    <AnimatePresence>
+                      {selectedCourses.map((course, index) => (
+                        <AnimatedDiv
+                          key={index}
+                          className="flex justify-between rounded-2xl bg-gray-50 px-4 py-3 font-light text-myBlack dark:bg-white/5 dark:text-gray-200"
+                        >
+                          <div className="font-light">{course.name}</div>
+                          <div className="flex items-center gap-2">
+                            <div>{course.amozeshyarCode ?? "-"}</div>
 
-                          {course.amozeshyarCode && (
+                            {course.amozeshyarCode && (
+                              <button
+                                className="opacity-50"
+                                onClick={(e) => {
+                                  const el = e.currentTarget;
+                                  copyCode(course.amozeshyarCode ?? "");
+                                  el.classList.add("animate-ping");
+
+                                  setTimeout(() => {
+                                    el.classList.remove("animate-ping");
+                                  }, 1000);
+                                }}
+                              >
+                                <CopyIcon />
+                              </button>
+                            )}
+
                             <button
-                              className="opacity-50"
-                              onClick={(e) => {
-                                const el = e.currentTarget;
-                                copyCode(course.amozeshyarCode ?? "");
-                                el.classList.add("animate-ping");
-
-                                setTimeout(() => {
-                                  el.classList.remove("animate-ping");
-                                }, 1000);
-                              }}
+                              onClick={() => handleSelectedCourse(course)}
+                              className="rounded-lg bg-red-100 px-1 py-1 text-sm font-light text-red-600"
                             >
-                              <CopyIcon />
+                              <TrashIcon />
                             </button>
-                          )}
-
-                          <button
-                            className="text-red-700 opacity-50"
-                            onClick={() => handleSelectedCourse(course)}
-                          >
-                            <TrashIcon width={32} height={32} />
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+                          </div>
+                        </AnimatedDiv>
+                      ))}
+                    </AnimatePresence>
                   </div>
 
                   <PrimaryButton

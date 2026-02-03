@@ -1,16 +1,16 @@
 "use client";
 import TrashIcon from "@/assets/icons/TrashIcon";
-import PrimaryInput from "@/components/utils/inputs/PrimaryInput";
-import PageHeading from "@/components/layout/PageHeading";
-import CourseButton from "@/components/pages/uv/CourseButton";
+import CourseButton from "@/features/uv/ui/CourseButton";
 import axiosInstance from "@/utils/connect";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { CopyIcon } from "@/assets/icons/CopyIcon";
-import CourseResourcesSkletons from "@/components/pages/courses-resources/CourseResourcesSkletons";
-import CoursesResourcesGuideBox from "@/components/pages/courses-resources/CoursesResourcesGuideBox";
+import CourseResourcesSkletons from "@/features/course-resources/ui/CourseResourcesSkletons";
+import CoursesResourcesGuideBox from "@/features/course-resources/ui/CoursesResourcesGuideBox";
 import { usePageActions } from "@/store/usePageActions";
 import { Course, CourseResource } from "@/generated/prisma/client";
+import PrimaryInput from "@/ui/utils/inputs/PrimaryInput";
+import PageHeading from "@/ui/layout/PageHeading";
 
 export default function CoursesResourcesPage() {
   // Main states.
@@ -34,19 +34,19 @@ export default function CoursesResourcesPage() {
   // Handle search.
   const [searchValue, setSearchValue] = useState("");
   const [searchData, setSearchData] = useState<Course[]>([]);
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchData([]);
-    setSearchValue(e.target.value);
+  const handleSearch = (newValue: string) => {
+    setSearchValue(newValue);
 
     if (!fetchCourses) {
       return;
     }
 
-    if (e.target.value === "") {
+    if (newValue === "") {
+      setSearchData([]);
       return;
     }
 
-    setSearchData(fetchCourses.filter((c) => c.name.includes(e.target.value)));
+    setSearchData(fetchCourses.filter((c) => c.name.includes(newValue)));
   };
 
   const [selectedCourse, setSelectedCourse] = useState<
@@ -103,7 +103,7 @@ export default function CoursesResourcesPage() {
                   <div className="relative mb-8">
                     <PrimaryInput
                       type="text"
-                      onChange={handleSearch}
+                      onChange={(n) => handleSearch(n)}
                       value={searchValue}
                       placeholder="جستجو درس..."
                     />
