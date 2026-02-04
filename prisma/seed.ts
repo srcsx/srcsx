@@ -37,18 +37,14 @@ export async function main() {
     }
 
     if (file.type === "docs") {
-      for (const d of file.data) {
-        const { sections, ...rest } = d;
-
-        await prisma.doc.create({
-          data: {
-            ...rest,
-            sections: {
-              create: sections,
-            },
-          },
-        });
-      }
+      await Promise.all(
+        file.data.map((d: any) => {
+          const { sections, ...rest } = d;
+          return prisma.doc.create({
+            data: { ...rest, sections: { create: sections } },
+          });
+        }),
+      );
     }
 
     if (file.type === "refrence_courses") {

@@ -49,7 +49,7 @@ export default function DocsPage() {
 
           <div className="mb-2 flex flex-wrap items-stretch justify-center gap-2 md:justify-start">
             {docs.map((item, i) => (
-              <AnimatedDiv>
+              <AnimatedDiv key={i}>
                 <button
                   onClick={() => setSelectedDoc(item)}
                   className={`relative flex h-full min-w-[168px] items-center justify-center gap-4 rounded-2xl bg-myMain bg-opacity-5 p-6 text-xs text-myBlack transition-all hover:bg-opacity-10 disabled:opacity-50 dark:bg-black dark:bg-opacity-20 dark:text-gray-200 md:min-w-[262px] md:p-8 md:text-base`}
