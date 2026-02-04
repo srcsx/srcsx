@@ -1,11 +1,11 @@
 "use client";
-import { OfferedCourse } from "@/generated/prisma/client";
 import PageHeading from "@/ui/layout/PageHeading";
 import axiosInstance from "@/utils/connect";
 import { useEffect, useState } from "react";
 import { usePageActions } from "@/store/usePageActions";
 import SelectCourses from "@/features/offered-courses/ui/Stages/SelectCourses";
 import SeeCourses from "@/features/offered-courses/ui/Stages/SeeCourses";
+import { Course } from "@/features/offered-courses/type";
 
 type Day =
   | "پنج‌شنبه"
@@ -24,7 +24,7 @@ export default function CourseOfferingsPage() {
   const [type, setType] = useState<"general" | "main">("main");
   const [year, setYear] = useState<number>(4042);
 
-  const [courses, setCourses] = useState<OfferedCourse[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     // Fetch data from api.
@@ -41,7 +41,7 @@ export default function CourseOfferingsPage() {
     fetchData();
   }, []);
 
-  const [selectedCourses, setSelectedCourses] = useState<OfferedCourse[]>([]);
+  const [selectedCourses, setSelectedCourses] = useState<Course[]>([]);
 
   const [passedUnits, setPassedUnits] = useState<number>(0);
 

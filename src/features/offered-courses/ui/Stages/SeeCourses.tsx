@@ -1,8 +1,8 @@
 import { TickIcon } from "@/assets/icons/TickIcon";
-import { OfferedCourse } from "@/generated/prisma/client";
 import SelectHeading from "@/ui/layout/SelectHeading";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import { Course } from "../../type";
 
 type SortDirection = "asc" | "desc" | null;
 
@@ -13,21 +13,21 @@ export default function SeeCourses({
   passedUnits,
   setPassedUnits,
 }: {
-  courses: OfferedCourse[];
-  selectedCourses: OfferedCourse[];
-  setSelectedCourses: React.Dispatch<React.SetStateAction<OfferedCourse[]>>;
+  courses: Course[];
+  selectedCourses: Course[];
+  setSelectedCourses: React.Dispatch<React.SetStateAction<Course[]>>;
   passedUnits: number;
   setPassedUnits: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [sortConfig, setSortConfig] = useState<{
-    key: keyof OfferedCourse | null;
+    key: keyof Course | null;
     direction: SortDirection;
   }>({
     key: null,
     direction: null,
   });
 
-  const handleSort = (key: keyof OfferedCourse) => {
+  const handleSort = (key: keyof Course) => {
     setSortConfig((prev) => {
       if (prev.key !== key) {
         return { key, direction: "asc" };

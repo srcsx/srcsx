@@ -1,11 +1,11 @@
 import { TickIcon } from "@/assets/icons/TickIcon";
-import { OfferedCourse } from "@/generated/prisma/client";
 import ToggleButton from "@/ui/utils/buttons/ToggleButton";
 import ScrollableSelectBox from "@/ui/utils/inputs/ScrollableSelectBox";
 import Modal from "@/ui/utils/Modal";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
+import { Course } from "../../type";
 
 const timeToMinutes = (time?: string | null) => {
   if (!time) return null;
@@ -41,13 +41,13 @@ export default function SelectCourses({
   selectedDay,
   setSelectedDay,
 }: {
-  courses: OfferedCourse[];
+  courses: Course[];
   type: "main" | "general";
   setType: React.Dispatch<React.SetStateAction<"main" | "general">>;
   year: number;
   setYear: React.Dispatch<React.SetStateAction<number>>;
-  selectedCourses: OfferedCourse[];
-  setSelectedCourses: React.Dispatch<React.SetStateAction<OfferedCourse[]>>;
+  selectedCourses: Course[];
+  setSelectedCourses: React.Dispatch<React.SetStateAction<Course[]>>;
   passedUnits: number;
   setPassedUnits: React.Dispatch<React.SetStateAction<number>>;
   showExtraData: boolean;
@@ -57,19 +57,17 @@ export default function SelectCourses({
   selectedDay: Day | null;
   setSelectedDay: React.Dispatch<React.SetStateAction<Day | null>>;
 }) {
-  const [showWarnModal, setShowWarnModal] = useState<OfferedCourse | null>(
-    null,
-  );
+  const [showWarnModal, setShowWarnModal] = useState<Course | null>(null);
 
   const [sortConfig, setSortConfig] = useState<{
-    key: keyof OfferedCourse | null;
+    key: keyof Course | null;
     direction: SortDirection;
   }>({
     key: null,
     direction: null,
   });
 
-  const handleSort = (key: keyof OfferedCourse) => {
+  const handleSort = (key: keyof Course) => {
     setSortConfig((prev) => {
       if (prev.key !== key) {
         return { key, direction: "asc" };
@@ -109,7 +107,7 @@ export default function SelectCourses({
     return sorted;
   }, [courses, sortConfig]);
 
-  const addCourse = (c: OfferedCourse) => {
+  const addCourse = (c: Course) => {
     const cStart = timeToMinutes(c.startTime);
     const cEnd = timeToMinutes(c.endTime);
 
@@ -299,6 +297,8 @@ export default function SelectCourses({
                   </div>
                 </th>
 
+                <th className="px-3 py-3 text-center font-medium">پیشنیاز</th>
+
                 <th className="px-3 py-3 text-center font-medium">واحد درس</th>
 
                 <th className="px-3 py-3 text-center font-medium">
@@ -414,6 +414,39 @@ export default function SelectCourses({
 
                       <td className="px-3 py-3 text-center">
                         {c.endTime ?? "-"}
+                      </td>
+
+                      <td className="min-w-[120px] px-3 py-3 text-center">
+                        {c.course && (
+                          <>
+                            {/* پیش‌نیازها */}
+                            {c.course.preCourseRequisites?.length > 0 &&
+                              c.course.preCourseRequisites.map((p, i) => (
+                                <span key={p.id}>
+                                  {p.name} {p.corequisite ? "(همنیاز)" : ""}
+                                  {i < c.course.preCourseRequisites.length - 1
+                                    ? ", "
+                                    : ""}
+                                </span>
+                              ))}
+
+                            {/* فاصله بین preCourse و unitRequisites فقط وقتی هر دو هست */}
+                            {c.course.preCourseRequisites?.length > 0 &&
+                              c.course.unitRequisites?.length > 0 &&
+                              " | "}
+
+                            {/* واحدها */}
+                            {c.course.unitRequisites?.length > 0 &&
+                              c.course.unitRequisites.map((u, i) => (
+                                <span key={i}>
+                                  {u.unit} واحد
+                                  {i < c.course.unitRequisites.length - 1
+                                    ? ", "
+                                    : ""}
+                                </span>
+                              ))}
+                          </>
+                        )}
                       </td>
 
                       <td className="px-3 py-3 text-center">{c.unit}</td>
