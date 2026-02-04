@@ -148,6 +148,12 @@ export default function SelectCourses({
     if (direction === "desc") return <span>↓</span>;
   };
 
+  const latestUpdate = useMemo(() => {
+    return courses[0]?.createdAt
+      ? new Date(courses[0].createdAt).toLocaleDateString("fa-IR")
+      : "";
+  }, [courses]);
+
   return (
     <div>
       <div className="mb-4 flex">
@@ -206,6 +212,13 @@ export default function SelectCourses({
           ]}
           onChange={(n) => setSelectedDay(n.value as Day | null)}
         />
+      </div>
+
+      <div className="mb-4 text-xs font-light text-gray-400 dark:border-black/50 dark:text-gray-100">
+        آخرین بروزرسانی:{" "}
+        <span className="rounded-2xl bg-black/5 px-2 py-1 dark:bg-white/5">
+          {latestUpdate}
+        </span>
       </div>
 
       <div className="relative mb-8 overflow-hidden rounded-2xl border border-gray-100 bg-white text-gray-400 shadow-sm dark:border-black/50 dark:bg-white/5 dark:text-gray-100">

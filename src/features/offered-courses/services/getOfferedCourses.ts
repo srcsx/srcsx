@@ -36,6 +36,9 @@ export default async function getOfferedCourses(majorId: number, term: number) {
         },
       },
     },
+    orderBy: {
+      id: "desc",
+    },
   });
 
   return offeredCourses.map((oc) => ({
