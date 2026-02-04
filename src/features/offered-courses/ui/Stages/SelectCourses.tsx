@@ -111,34 +111,31 @@ export default function SelectCourses({
     const cStart = timeToMinutes(c.startTime);
     const cEnd = timeToMinutes(c.endTime);
 
-    if (cStart === null || cEnd === null) {
-      alert("ساعت درس نامعتبره");
-      return;
-    }
+    if (cStart !== null && cEnd !== null) {
+      const conflictCourse = selectedCourses.find((sc) => {
+        if (sc.dayOfWeek !== c.dayOfWeek) return false;
 
-    const conflictCourse = selectedCourses.find((sc) => {
-      if (sc.dayOfWeek !== c.dayOfWeek) return false;
+        const sStart = timeToMinutes(sc.startTime);
+        const sEnd = timeToMinutes(sc.endTime);
 
-      const sStart = timeToMinutes(sc.startTime);
-      const sEnd = timeToMinutes(sc.endTime);
+        if (sStart === null || sEnd === null) return false;
 
-      if (sStart === null || sEnd === null) return false;
+        return cStart < sEnd && cEnd > sStart;
+      });
 
-      return cStart < sEnd && cEnd > sStart;
-    });
-
-    if (conflictCourse) {
-      toast.error(
-        `تداخل زمانی با درس «${conflictCourse.name}»
+      if (conflictCourse) {
+        toast.error(
+          `تداخل زمانی با درس «${conflictCourse.name}»
       (${conflictCourse.startTime} - ${conflictCourse.endTime})`,
-        {
-          style: {
-            fontFamily: "Samim",
+          {
+            style: {
+              fontFamily: "Samim",
+            },
+            className: "error-toast",
           },
-          className: "error-toast",
-        },
-      );
-      return;
+        );
+        return;
+      }
     }
 
     setSelectedCourses([...selectedCourses, c]);
@@ -417,9 +414,9 @@ export default function SelectCourses({
                       </td>
 
                       <td className="min-w-[120px] px-3 py-3 text-center">
-                        {c.course && (
+                        {c.course?.preCourseRequisites?.length > 0 ||
+                        c.course?.unitRequisites?.length > 0 ? (
                           <>
-                            {/* پیش‌نیازها */}
                             {c.course.preCourseRequisites?.length > 0 &&
                               c.course.preCourseRequisites.map((p, i) => (
                                 <span key={p.id}>
@@ -430,12 +427,10 @@ export default function SelectCourses({
                                 </span>
                               ))}
 
-                            {/* فاصله بین preCourse و unitRequisites فقط وقتی هر دو هست */}
                             {c.course.preCourseRequisites?.length > 0 &&
                               c.course.unitRequisites?.length > 0 &&
                               " | "}
 
-                            {/* واحدها */}
                             {c.course.unitRequisites?.length > 0 &&
                               c.course.unitRequisites.map((u, i) => (
                                 <span key={i}>
@@ -446,6 +441,8 @@ export default function SelectCourses({
                                 </span>
                               ))}
                           </>
+                        ) : (
+                          "-"
                         )}
                       </td>
 
