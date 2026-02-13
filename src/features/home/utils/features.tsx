@@ -4,9 +4,9 @@ import BookStarVector from "@/assets/vectors/‌BookStarVector";
 import { FlowchartVector } from "@/assets/vectors/FlowchartVector";
 import { DocumentVector } from "@/assets/vectors/DocumentVector";
 import { OpenBookVector } from "@/assets/vectors/OpenBookVector";
-import { SparkleVector } from "@/assets/vectors/SparkleVector";
-import { RegistrationVector } from "@/assets/vectors/RegistrationVector";
 import { ListDetailVector } from "@/assets/vectors/ListDetailVector";
+import { BookDatabase20 } from "@/assets/vectors/BookDatabase20";
+import { BookDatabase24 } from "@/assets/vectors/BookDatabase24";
 // import { RegistrationVector } from "@/assets/vectors/RegistrationVector";
 // import { LibraryVector } from "@/assets/vectors/LibraryVector";
 
@@ -41,20 +41,26 @@ export const features: ItemType[] = [
     title: "درس های ارائه شده",
     href: "offered-courses",
     icon: <ListDetailVector />,
-    description: "اینجا میتونی لیست درس های ارائه شده رو ببینی.",
+    description: "اینجا میتونی لیست درس‌های ارائه شده رو ببینی.",
     newItem: true,
     beta: true,
   },
-  //   {
-  //     title: "برنامه‌ریزی واحد‌های درسی",
-  //     href: "planning",
-  //     beta: true,
-  //     icon: <SparkleVector />,
-  //     description:
-  //       "اینجا میتونی برای ترم های آیندت برنامه ریزی کنه و اهدافت رو مشخصه کنی.",
-  //   },
   {
-    title: "فلوچارت درسی",
+    title: "لیست درس‌های عمومی",
+    href: "courses-list?type=general",
+    icon: <BookDatabase20 />,
+    description: "اینجا میتونی لیست درس‌های عمومی رشتت رو ببینی.",
+    newItem: true,
+  },
+  {
+    title: "لیست درس‌های تخصصی",
+    href: "courses-list?type=major",
+    icon: <BookDatabase24 />,
+    description: "اینجا میتونی لیست درس‌های تخصصی رشتت رو ببینی.",
+    newItem: true,
+  },
+  {
+    title: "فلوچارت درس‌های تخصصی",
     href: "flowchart",
     icon: <FlowchartVector />,
     description:
@@ -87,6 +93,14 @@ export const features: ItemType[] = [
     icon: <OpenBookVector />,
     description: "منابع معتبر درس های دانشگاه رو میتونی از اینجا مشاهده کنی.",
   },
+  //   {
+  //     title: "برنامه‌ریزی واحد‌های درسی",
+  //     href: "planning",
+  //     beta: true,
+  //     icon: <SparkleVector />,
+  //     description:
+  //       "اینجا میتونی برای ترم های آیندت برنامه ریزی کنه و اهدافت رو مشخصه کنی.",
+  //   },
   // {
   //   title: "انتخاب واحد آزمایشی",
   //   href: "course-registration",

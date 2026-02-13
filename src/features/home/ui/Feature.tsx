@@ -45,7 +45,7 @@ export default function Feature({
 
         <div className="absolute -top-2 right-2 flex items-center gap-1">
           {newItem && (
-            <div className="rounded-full bg-green-200 px-2 py-1 text-sm font-light text-green-700">
+            <div className="rounded-full bg-green-100 px-2 py-1 text-sm font-light text-green-700">
               جدید
             </div>
           )}
