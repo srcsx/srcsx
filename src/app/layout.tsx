@@ -6,6 +6,7 @@ import ProgressBar from "@/ui/layout/ProgressBar";
 import SRCSXSimpleNav from "@/ui/layout/SRCSXSimpleNavigation";
 import { PageTourRenderer } from "@/ui/layout/PageTourRenderer";
 import Theme from "@/ui/layout/Theme";
+import IOSPWAPrompt from "@/ui/layout/IOSPWAPrompt";
 
 export const metadata: Metadata = {
   title: "SRCSX - پلتفرم جامع",
@@ -91,6 +92,7 @@ export default function RootLayout({
             transition={Flip}
           />
           <Theme />
+          <IOSPWAPrompt />
         </Suspense>
 
         <div className="fixed inset-0 -z-10">
