@@ -126,6 +126,7 @@ export default function CoursesList() {
             <thead className="border-b border-gray-200 bg-gray-50 text-xs text-black dark:border-black/50 dark:bg-white/5 dark:text-gray-100">
               <tr>
                 <th className="px-3 py-3 pr-4 text-center font-medium">#</th>
+                <th className="px-3 py-3 text-center font-medium">کد درس</th>
 
                 <th
                   onClick={() => handleSort("name")}
@@ -145,8 +146,6 @@ export default function CoursesList() {
                 <th className="px-3 py-3 text-center font-medium">واحد درس</th>
                 <th className="px-3 py-3 text-center font-medium">واحد نظری</th>
                 <th className="px-3 py-3 text-center font-medium">واحد عملی</th>
-
-                <th className="px-3 py-3 text-center font-medium">کد درس</th>
               </tr>
             </thead>
             <tbody>
@@ -172,6 +171,9 @@ export default function CoursesList() {
                     >
                       <td className="min-w-[120px] px-3 py-3 text-center">
                         {i + 1}
+                      </td>
+                      <td className="px-3 py-3 text-center">
+                        {c.amozeshyarCode}
                       </td>
                       <td className="min-w-[120px] px-3 py-3 text-center">
                         {c.name}
@@ -208,10 +210,6 @@ export default function CoursesList() {
                       <td className="px-3 py-3 text-center">{c.unit}</td>
                       <td className="px-3 py-3 text-center">{c.theoUnit}</td>
                       <td className="px-3 py-3 text-center">{c.pracUnit}</td>
-
-                      <td className="px-3 py-3 text-center">
-                        {c.amozeshyarCode}
-                      </td>
                     </motion.tr>
                   );
                 })}

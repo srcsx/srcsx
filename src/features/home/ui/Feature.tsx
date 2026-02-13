@@ -45,25 +45,25 @@ export default function Feature({
 
         <div className="absolute -top-2 right-2 flex items-center gap-1">
           {newItem && (
-            <div className="rounded-full bg-green-100 px-2 py-1 text-sm font-light text-green-700">
+            <div className="rounded-full border border-dashed border-black/50 bg-black/5 px-2 py-[2px] text-xs font-light backdrop-blur-3xl dark:border-white/60 dark:bg-white/20 dark:text-white">
               جدید
             </div>
           )}
 
           {soon && (
-            <div className="rounded-full bg-myMain px-2 py-1 text-sm font-light text-white shadow-md">
+            <div className="rounded-full border border-dashed border-black/50 bg-black/5 px-2 py-[2px] text-xs font-light backdrop-blur-3xl dark:border-white/60 dark:bg-white/20 dark:text-white">
               بزودی
             </div>
           )}
 
           {beta && (
-            <div className="rounded-full bg-[#BDCBD2] px-2 py-1 text-sm font-light text-myMain shadow-md dark:bg-gray-200">
+            <div className="rounded-full border border-dashed border-black/50 bg-black/5 px-2 py-[2px] text-xs font-light backdrop-blur-3xl dark:border-white/60 dark:bg-white/20 dark:text-white">
               آزمایشی
             </div>
           )}
 
           {inProgress && (
-            <div className="rounded-full bg-gradient-to-br from-violet-900 to-blue-900 px-2 py-1 text-sm font-light text-gray-200 shadow-md">
+            <div className="rounded-full border border-dashed border-black/50 bg-black/5 px-2 py-[2px] text-xs font-light backdrop-blur-3xl dark:border-white/60 dark:bg-white/20 dark:text-white">
               در حال تکمیل
             </div>
           )}
